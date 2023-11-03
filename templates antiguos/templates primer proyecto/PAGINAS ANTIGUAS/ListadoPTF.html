@@ -1,0 +1,95 @@
+{% extends "base/base.html" %}
+{% block titulo %}Historial de trabajos{% endblock %}
+{% block contenido %}
+        <h1 style= "display: flex; 
+        position: relative;
+        justify-content: center;
+        ">Listado y estado de los PTF</h1>
+        <br>
+        <h4>Filtrar por:</h4>
+        <div id="filtros">
+            <fieldset>
+                <form action="#" method="post" style="display:list-item;
+                position: relative;
+                justify-content: center;
+                align-items: center;">
+                    <input type="radio" id="filtronombre" name="filtrovalor" value="filtronombre"
+                     required>
+                    <label for="filtronombre" style="left:15px;">Nombre</label><br>
+                    <input type="radio" id="filtrofecha" name="filtrovalor" value="filtrofecha"
+                     required >
+                    <label for="filtrofecha" >Fecha</label><br>
+                    <input type="radio" id="filtroestado" name="filtrovalor" value="filtroestado"
+                     required>
+                    <label for="filtroestado">Estado</label>
+                    <br><br>
+                    <input type="submit" name="guardar" value="Buscar">
+                    <input type="reset" name="cancelar" value="Cancelar">
+                </form>
+            </fieldset>
+                
+        </div>
+        <br>
+        <br>
+        <br>
+        
+        <div id="resultados">
+            <table class="table table-bordered table-sm" style="justify-content: center;width: 65%; margin-left: auto; margin-right: auto;">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre del Trabajo</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Fecha de presentación</th>
+                    </tr>
+                </thead>                    
+                <tbody>
+                    <tr>
+                        <td scope="row">1</td>
+                        <td>Ej1</td>
+                        <td>TE-Aprobado</td>
+                        <td>12/10/2020</td>
+                    </tr>
+                    <tr>
+                        <td scope="row">2</td>
+                        <td>Ej2</td>
+                        <td>TE-Observado</td>
+                        <td>13/11/2020</td>
+                    </tr>
+                    <tr>
+                        <td scope="row">3</td>
+                        <td>Ej3</td>
+                        <td>TE-Rechazado</td>
+                        <td>14/12/2020</td>
+                    </tr>
+                    <tr>
+                        <td scope="row">4</td>
+                        <td>Ej4</td>
+                        <td>CSTF-Aprobado</td>
+                        <td>15/01/2021</td>
+                    </tr>
+                    <tr>
+                        <td scope="row">5</td>
+                        <td>Ej5</td>
+                        <td>CSTF-Observado</td>
+                        <td>16/02/2021</td>
+                    </tr>
+                    <tr>
+                        <td scope="row">6</td>
+                        <td>Ej6</td>
+                        <td>CSTF-Rechazado</td>
+                        <td>17/03/2021</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <br><br>
+
+        <div id="referencias">
+            <h4>Referencias</h4>
+            <br>
+            <p id="te" > TE: Tribunal Evaluador </p>
+            <p id="cstf"> CSTF: Comisión de Seguimiento de Trabajo Final </p>
+        </div>
+{% endblock %}

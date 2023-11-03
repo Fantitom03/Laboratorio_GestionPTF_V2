@@ -1,0 +1,85 @@
+{% extends "base/base.html" %}
+{% block titulo %}Proyectos{% endblock %}
+{% block contenido %}
+    <h2>SISTEMA DE CALIFICACIONES DE LA COMISION DE SEGUIMIENTO DE TRABAJO FINAL</h2>
+    <br>
+    <br>
+    <br>
+    <form action="#" style="position: relative; align-items: center; justify-content: center; display: flex;">
+    <div>
+      
+      <table class="table table-light table-bordered border-primary">
+        <thead>
+          <tr class="table-info table-bordered border-primary">
+            <th scope="col">ID</th>
+            <th scope="col">Nombre del Trabajo</th>
+            <th scope="col">Calificacion</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Fecha de presentación</th>
+            <th scope="col"> Observación </th>
+          </tr>
+        </thead>
+        <tbody id="elementos">
+          <tr>
+            <th scope="row">1</th>
+            <td>Ej1</td>
+            <td>
+              <div class="dropdown">
+                <select class="form-select" aria-label="Default select example" id="calificacion">
+                  <option selected>Calificar</option>
+                  <option value="aprobado">Aprobado</option>
+                  <option value="rechazado">Rechazado</option>
+                  <option value="observado">Observado</option>
+                </select>
+              </div>
+            </td>
+            <td id="Ej1">Pendiente</td>
+            <td>12/10/2020</td>
+            <td> 
+              <textarea class="form-control" id="floatingTextarea" placeholder="Observación"disabled></textarea>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Ej2</td>
+            <td>
+              <div class="dropdown">
+                <select class="form-select" aria-label="Default select example" id="calificacion2">
+                  <option selected>Calificar</option>
+                  <option value= "aprobado">Aprobado</option>
+                  <option value= "rechazado">Rechazado</option>
+                  <option value= "observado">Observado</option>
+                </select>
+              </div>
+            </td>
+            <td id="Ej2">Pendiente</td>
+            <td>13/11/2020</td>
+            <td> 
+              <textarea class="form-control" id="floatingTextarea2" placeholder="Observación"disabled></textarea>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Ej3</td>
+            <td>
+              <div class="dropdown">
+                <select class="form-select" aria-label="Default select example" id="calificacion3">
+                  <option selected>Calificar</option>
+                  <option value="aprobado">Aprobado</option>
+                  <option value="rechazado">Rechazado</option>
+                  <option value="observado">Observado</option>
+                </select>
+              </div>
+            </td>
+            <td id="Ej3">Pendiente</td>
+            <td>14/12/2020</td>
+            <td> 
+              <textarea class="form-control" id="floatingTextarea3" placeholder="Observación"  disabled ></textarea>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    </form>
+{% endblock %}
+

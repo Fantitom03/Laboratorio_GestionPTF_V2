@@ -1,0 +1,39 @@
+{% extends "base/base.html" %}
+{% block titulo %}Registro de Integrantes CSTF{% endblock %}
+{% block contenido %}
+        <br>
+        <br>
+        <br>
+        <br>
+        <h2>Datos Integrante CSTF</h2>
+        <br>
+        <br>
+        <form action="#" method="post" style="display:grid;
+        position: relative;
+        justify-content: center;
+        align-items: center;" >
+            <fieldset>
+                <label for="cuil">NÂ° CUIL/CUIT</label>
+                <br>
+                <input type="number" name="cuil" id="cuil" 
+                placeholder="Ingrese su nro de CUIL/CUIT sin puntos ni guiones" required>
+                <br>
+                <br>
+                <label for="nomyape">Apellido/s y Nombre/s</label>
+                <br>
+                <input type="text" name="nomyape" id="nomyape"  maxlength="60" 
+                placeholder="Apellido/s y Nombre/s del Integrante de la CSTF" required>
+                
+                <br>
+                <br>
+
+                <button class="btn btn-primary" type="submit">Guardar</button>
+                <button class="btn btn-primary" type="reset">Cancelar</button>
+                <br>
+            </fieldset>
+        
+            
+            
+        </form>
+
+{% endblock %}

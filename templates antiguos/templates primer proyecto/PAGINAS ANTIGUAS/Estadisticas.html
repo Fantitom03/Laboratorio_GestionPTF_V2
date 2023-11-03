@@ -1,0 +1,55 @@
+{% extends "base/base.html" %}
+{% block titulo %}Historial de Trabajos{% endblock %}
+{% block contenido %}
+
+        <p class="fs-3" style=" display:flex;
+        position: relative;
+        justify-content: center;
+        align-items: center; " >Se muestra la cantidad de trabajos realizados en un periodo</p>
+        <form action="#" method="post" style="display:flex;
+        position: relative;
+        justify-content: center;
+        align-items: center;">
+        
+            <fieldset style="justify-content: center; display:grid;">
+                <h3>Periodo de tiempo</h3>
+                <br>
+                <label for="fechaini"> Fecha de Inicio </label>
+                
+                <input type="date" name="fechaini" id="fechaini"
+                       min="2018-01-01" max="2023-12-31" required>
+                <br>
+                <br>
+                <label for="fechafin"> Fecha de Fin </label>
+                
+                <input type="date" name="fechafin" id="fechafin"
+                       min="2018-01-01" max="2023-12-31" required>
+                <br>
+                <br>
+                <button class="btn btn-primary" type="submit" onclick="document.getElementById('TablaCantidadTrabajos').style.display='block'" style="left: 25px; width: 15rem;">Buscar</button>
+                <br>
+                <button class="btn btn-primary" type="reset" style="width: 15rem;">Cancelar</button>
+            
+            </fieldset>
+        </form>
+        <br>
+        <br>
+        <div style="display: none;" id="TablaCantidadTrabajos"> 
+            <div id="resultados" style="display:flex;
+            position: relative;
+            justify-content: center;
+            align-items: center;">
+                <p id="cantidadTrabajos" > Cantidad de Trabajos</p>
+
+                <div class="p-3 mb-2 bg-dark text-success">Trabajos Aprobados</div>
+                <div class="p-3 mb-2 bg-dark text-danger">Trabajos Rechazados</div>
+                <div class="p-3 mb-2 bg-dark text-warning">Trabajos Observados</div>
+                <div class="p-3 mb-2 bg-dark text-white"> Trabajos Pendientes</div>
+                
+            </div>
+        </div>
+           
+
+
+        <script></script>
+{% endblock %}

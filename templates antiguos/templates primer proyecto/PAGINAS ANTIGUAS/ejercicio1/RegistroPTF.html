@@ -1,0 +1,134 @@
+{% extends "base/base.html" %}
+{% block titulo %}Registro de PTF{% endblock %}
+{% block contenido %}
+
+    <h1>Ingreso de Nuevo PTF</h1>
+    <br><br>
+    
+    <form id="formulario_PTF" action="#" style="position: relative; align-items: center; justify-content: center; display:grid;">
+      <div class="mb-3">
+        <label for="fecha_presentacion" class="form-label">Fecha Presentacion</label>
+        <input type="date" class="form-control" id="fecha_presentacion" required>
+      </div>
+
+      <br>
+
+      <div id="Alumno1"> 
+        <h3>Ingrese datos del Alumno 1</h3>
+        <br>
+        <div class="col-mb-3">
+          <label for="NombreA1" class="form-label">Nombre</label>
+          <input type="text" class="form-control" id="NombreA1" required>
+        </div>
+        <div class="col-mb-3">
+          <label for="ApellidoA1" class="form-label">Apellido</label>
+          <input type="text" class="form-control" id="ApellidoA1" required>
+        </div>
+        <label for="MU1" class="form-label">N° Matricula Universitaria (MU)</label>
+        <div class="col-md-4">
+          <input type="number" class="form-control" id="MU1" required>
+        </div>   
+      </div> 
+
+      <br><br>
+    
+      <div id="Alumno2"> 
+        <h3>Ingrese datos del Alumno 2</h3>
+        <br>
+        <div class="col-mb-3">
+          <label for="NombreA2" class="form-label">Nombre</label>
+          <input type="text" class="form-control" id="NombreA2" required>
+        </div>
+        <div class="col-mb-3">
+          <label for="ApellidoA2" class="form-label">Apellido</label>
+          <input type="text" class="form-control" id="ApellidoA2" required>
+        </div>
+        <label for="MU2" class="form-label">N° Matricula Universitaria (MU)</label>
+        <div class="col-md-4">
+          <input type="number" class="form-control" id="MU2" required>
+        </div>   
+      </div> 
+
+      <br><br>
+
+      <div id="Alumno3"> 
+        <h3>Ingrese datos del Alumno 3</h3>
+        <br>
+        <div class="col-mb-3">
+          <label for="NombreA3" class="form-label">Nombre</label>
+          <input type="text" class="form-control" id="NombreA3" required>
+        </div>
+        <div class="col-mb-3">
+          <label for="ApellidoA3" class="form-label">Apellido</label>
+          <input type="text" class="form-control" id="ApellidoA3" required>
+        </div>
+        <label for="MU3" class="form-label">N° Matricula Universitaria (MU)</label>
+        <div class="col-md-4">   
+          <input type="number" class="form-control" id="MU3" required>
+        </div>   
+      </div> 
+
+      <br><br>
+
+      <div id="Director"> 
+        <h3>Ingrese datos del Director</h3>
+        <br>
+        <div class="col-mb-3">
+          <label for="NombreD" class="form-label">Nombre</label>
+          <input type="text" class="form-control" id="NombreD" required>
+        </div>
+        <div class="col-mb-3">
+          <label for="ApellidoD" class="form-label">Apellido</label>
+          <input type="text" class="form-control" id="ApellidoD" required>
+        </div>
+        <label for="CUITD" class="form-label">N° de Cuit (sin puntos)</label>
+        <div class="col-md-4">
+          <input type="number" class="form-control" id="CUITD" required>
+        </div>
+      </div> 
+
+      <br><br>
+
+      <div id="Co_Director"> 
+        <h3>Ingrese datos del Co-Director</h3>
+        <br>
+        <div class="col-mb-3">
+          <label for="NombreCD" class="form-label">Nombre</label>
+          <input type="text" class="form-control" id="NombreCD" required>
+        </div>
+        <div class="col-mb-3">
+            <label for="ApellidoCD" class="form-label">Apellido</label>
+            <input type="text" class="form-control" id="ApellidoCD" required>
+        </div>
+        <label for="CUITCD" class="form-label">N° de Cuit (sin puntos)</label>
+        <div class="col-md-4">
+            <input type="number" class="form-control" id="CUITCD" required>
+        </div>  
+      </div> 
+
+      <br><br>
+  
+      <div id="Asesor"> 
+          <h3>Ingrese datos del Asesor</h3>
+          <br>
+          <div class="col-mb-3">
+            <label for="NombreAs" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="NombreAs">
+          </div>
+          <div class="col-mb-3">
+            <label for="ApellidoAs" class="form-label">Apellido</label>
+            <input type="text" class="form-control" id="ApellidoAs">
+          </div>
+          <label for="CUITAs" class="form-label">N° de Cuit (sin puntos)</label>
+          <div class="col-md-4">
+            <input type="number" class="form-control" id="CUITAs">
+          </div>
+      </div> 
+
+      <div>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+      </div>
+    </form>
+    
+
+{% endblock %}

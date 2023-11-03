@@ -1,0 +1,100 @@
+{% extends "base/base.html" %}
+{% block titulo %}Registro de Integrantes TE{% endblock %}
+{% block contenido %}
+
+        <h3>Datos Integrantes Tribunal Evaluador</h3>
+        <br>
+        <form action="#" method="post" style="left:25px; display:grid;
+        position: relative;
+        justify-content: center;
+        align-items: center;">
+            <fieldset>
+                <legend>Datos Presidente TE</legend>
+                <br>
+        
+                <label for="cuil3">N° CUIL/CUIT del presidente del Tribunal Evaluador</label>
+                <br>
+                <input type="number" name="cuil" id="cuil3" 
+                placeholder="Ingrese su nro de CUIL/CUIT sin puntos ni guiones" required style="width: 25rem;">
+                <br>
+                <br>
+                <label for="nomyape3">Apellido/s y Nombre/s del presidente del Tribunal Evaluador</label>
+                <br>
+                <input type="text" name="nomyape" id="nomyape3"  maxlength="60" 
+                placeholder="Apellido/s y Nombre/s del presidente" required style="width: 25rem;">
+                <br>
+                <br>
+                <br>
+                <br>
+                  
+            </fieldset>
+            <fieldset>
+                <legend>Datos Vocales</legend>
+                
+                <br>
+                <label for="cuil1">N° CUIL/CUIT del vocal 1 del Tribunal Evaluador</label>
+                <br>
+                <input type="number" name="cuil" id="cuil1" 
+                placeholder="Ingrese su nro de CUIL/CUIT sin puntos ni guiones" required style="width: 25rem;">
+                <br>
+                <br>
+                <label for="nomyape1">Apellido/s y Nombre/s del vocal 1 del Tribunal Evaluador</label>
+                <br>
+                <input type="text" name="nomyape" id="nomyape1"  maxlength="60" 
+                placeholder="Apellido/s y Nombre/s del vocal 1" required style="width: 25rem;">
+                <br>
+                <br>
+                <label for="cuil2">N° CUIL/CUIT del vocal 2 del Tribunal Evaluador</label>
+                <br>
+                <input type="number" name="cuil" id="cuil2"  
+                placeholder="Ingrese su nro de CUIL/CUIT sin puntos ni guiones" required style="width: 25rem;">
+                <br>
+                <br>
+                <label for="nomyape2">Apellido/s y Nombre/s del vocal 2 del Tribunal Evaluador</label>
+                <br>
+                <input type="text" name="nomyape" id="nomyape2"  maxlength="60" 
+                placeholder="Apellido/s y Nombre/s del vocal 2" required style="width: 25rem;">
+                <br>
+                <br>
+                <br>
+                <br>
+                
+            </fieldset>
+            <fieldset>
+                <legend>Datos Vocales Suplentes</legend>
+                
+                
+                <br>
+                <label for="cuil4">N° CUIL/CUIT del vocal suplente 1 del Tribunal Evaluador</label>
+                <br>
+                <input type="number" name="cuil" id="cuil4"  
+                placeholder="Ingrese su nro de CUIL/CUIT sin puntos ni guiones" required style="width: 25rem;">
+                <br>
+                <br>
+                <label for="nomyape4">Apellido/s y Nombre/s del vocal suplente 1 del Tribunal Evaluador</label>
+                <br>
+                <input type="text" name="nomyape" id="nomyape4"  maxlength="60" 
+                placeholder="Apellido/s y Nombre/s del vocal suplente 1" required style="width: 25rem;">
+                <br>
+                <br>
+                <label for="cuil5">N° CUIL/CUIT del vocal suplente 2 del Tribunal Evaluador</label>
+                <br>
+                <input type="number" name="cuil" id="cuil5" 
+                placeholder="Ingrese su nro de CUIL/CUIT sin puntos ni guiones" required style="width: 25rem;">
+                <br>
+                <br>
+                <label for="nomyape5">Apellido/s y Nombre/s del vocal suplente 2 del Tribunal Evaluador</label>
+                <br>
+                <input type="text" name="nomyape" id="nomyape5"  maxlength="60" 
+                placeholder="Apellido/s y Nombre/s del vocal suplente 2" required style="width: 25rem;">
+                <br>
+                
+                
+            </fieldset>
+            <br>
+            <button class="btn btn-primary" type="submit" style="left: 25px; width: 25rem;">Guardar</button>
+            <br>
+            <button class="btn btn-primary" type="reset" style="left: 25px; width: 25rem;">Cancelar</button>
+            
+        </form>
+{% endblock %}
