@@ -1,0 +1,22 @@
+{% extends "base/base.html" %}
+{% block titulo %} Crear Tribunal Evaluador {% endblock %}
+{% block tituloBarra %} CREAR MIEMBRO TE {% endblock %}
+
+<div>
+	{% block contenido %}
+	<div>
+	<br><br><br>
+	</div>
+
+
+<div>
+		<form method="post" action="{% url 'comision:miembroTE_crear' %}">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<button type="submit">Guardar</button>
+		</form>
+		<a href="{% url 'comision:miembroTE_list' %}">VOLVER</a>
+</div>
+
+{% endblock %}
+</div>

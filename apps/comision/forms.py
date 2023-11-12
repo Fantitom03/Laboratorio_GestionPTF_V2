@@ -9,21 +9,28 @@ class Miembro_CSTF_Form(forms.ModelForm):
             'resolucion_asignacion',
             'fecha_alta'
             )
-        labels = {
-            'docente' : 'Docente',
-            'resolucion_asignacion' : 'Resolucion Asignacion',
-            'fecha_alta' : 'Fecha de Alta'
-        }
 
 
-class Miembro_TE_Form(forms.ModelForm):
+
+class MiembroTE_Form(forms.ModelForm):
     class Meta:
         model = Miembro_TE
         fields = (
             'docente',
-            'fecha_alta',
-            'rol'
+            'rol',
+            'fecha_alta'
         )
+        labels = {
+            'docente': 'Docente',
+            'rol': 'ROL',
+            'fecha_alta': 'FECHA ALTA'
+
+        }
+
+        widgets = {
+            'fecha_alta' : forms.DateInput(attrs={'class' : 'form-control'})
+
+        }
 
 class TribunalEvaluadorForm(forms.ModelForm):
     class Meta:
