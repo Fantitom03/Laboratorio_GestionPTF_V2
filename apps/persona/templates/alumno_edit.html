@@ -1,0 +1,17 @@
+{% extends "base/base.html" %}
+{% block titulo %}Editar Alumno{% endblock %}
+{% block contenido %}
+{% block tituloBarra %}Editar Alumno{% endblock %}
+    <br>
+    <br>
+    <br>
+    <form method="post" action="{% url 'persona:alumno_edit' alumno.id %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar</button>
+    </form>
+
+    <a href="{% url 'persona:alumno_list' %}">VOLVER</a>
+
+
+{% endblock %}

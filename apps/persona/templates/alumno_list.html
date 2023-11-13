@@ -1,0 +1,41 @@
+{% extends "base/base.html" %}
+{% block titulo %}Listado Alumno{% endblock %}
+{% block contenido %}
+{% block tituloBarra %}Listado Alumno{% endblock %}
+    <br>
+    <br>
+    <br>
+
+    <a href="{% url 'persona:alumno_create' %}" class="btn btn-primary">Agregar Alumno</a>
+
+    <div id="resultados">
+        <table class="table table-bordered table-sm" style="justify-content: center;width: 65%; margin-left: auto; margin-right: auto;">
+            <thead>
+                <tr>
+                    <th scope="col">DNI</th>
+                    <th scope="col">MU</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+										<th scope="col">Correo Electronico</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% if object_list %}
+            {% for alumno in object_list %}
+                <tr>
+                    <td scope="row"><a href="{% url 'persona:alumno_detail' alumno.id %}">{{ alumno.dni }}</a></td>
+                    <td>{{ alumno.matricula }}</td>
+                    <td>{{ alumno.nombre }}</td>
+                    <td>{{ alumno.apellido }}</td>
+										<td>{{ alumno.correo_electronico }}</td>
+                </tr>
+            {% endfor %}
+            {% else %}
+                <h1>No hay registros de alumnos</h1>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+
+{% endblock %}
