@@ -21,6 +21,9 @@
     </form>
     <br>
     <br>
-    <a href="{% url 'persona:alumno_list' %}">VOLVER</a>
+    {% if request.method == "POST" %}
+        <a href="{% url 'persona:alumno_confirm_delete' alumno.id %}" class="btn btn-danger">Eliminar</a>
+        <a href="{% url 'persona:alumno_detail' alumno.id %}" class="btn btn-primary">Cancelar</a>
+    {% endif %}
 
 {% endblock %}

@@ -1,0 +1,10 @@
+{% extends "base/base.html" %}
+{% block titulo %}Detalle Alumnos{% endblock %}
+{% block tituloBarra %}¡Cuidado!{% endblock %}
+{% block contenido %}
+
+    <h1>¿Está seguro de que desea eliminar al alumno {{ alumno.nombre }} {{ alumno.apellido }}?</h1>
+    <a href="{% url 'persona:alumno_delete' alumno.id %}" class="btn btn-danger">Eliminar</a>
+    <a href="{% url 'persona:alumno_detail' alumno.id %}" class="btn btn-primary">Cancelar</a>
+
+{% endblock %}
