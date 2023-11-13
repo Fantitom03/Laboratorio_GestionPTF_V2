@@ -1,0 +1,29 @@
+{% extends "base/base.html" %}
+{% block titulo %} MIEMBROS TE {% endblock %}
+{% block contenido %}
+
+	<table>
+		<thead>
+			<tr>
+				<td> DOCENTE </td>
+				<td> FECHA ALTA</td>
+				<td> ROL </td>
+			</tr>
+		</thead>
+		<tbody>
+			{% if object_list %}
+			{% for miembro in object_list %}
+				<tr>
+					<td>{{ miembro.docente }}</td>
+					<td>{{ miembro.fecha_alta }}</td>
+					<td>{{ miembro.rol }}</td>
+				</tr>
+			{% endfor %}
+			{% else %}
+				<h1> NO HAY MIEMBROS TE</h1>
+			{% endif %}
+		</tbody>
+
+
+	</table>
+{% endblock %}
