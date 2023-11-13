@@ -1,6 +1,11 @@
 {% extends "base/base.html" %}
 {% block titulo %} MIEMBROS TE {% endblock %}
+{% block tituloBarra %} LISTA MIEMBROS TE {% endblock %}
 {% block contenido %}
+
+	<div>
+		<br><br><br>
+	</div>
 
 	<table>
 		<thead>
@@ -8,6 +13,7 @@
 				<td> DOCENTE </td>
 				<td> FECHA ALTA</td>
 				<td> ROL </td>
+				<td> DETALLE </td>
 			</tr>
 		</thead>
 		<tbody>
@@ -17,6 +23,7 @@
 					<td>{{ miembro.docente }}</td>
 					<td>{{ miembro.fecha_alta }}</td>
 					<td>{{ miembro.rol }}</td>
+					<td><button><a href=" {% url 'comision:miembroTE_detalle' miembro.id %} "> {{ miembro.docente.cuil }} </a></button></td>
 				</tr>
 			{% endfor %}
 			{% else %}
