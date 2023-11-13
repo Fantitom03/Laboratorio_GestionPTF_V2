@@ -26,5 +26,5 @@ urlpatterns = [
     #path('persona/', include('apps.persona.urls', namespace='persona')),
     path('comision/', include('apps.comision.urls', namespace='comision')),
     #path('evaluacion/', include('apps.evaluacion.urls', namespace='evaluacion')),
-    #path('proyectotf/', include('apps.proyectotf.urls', namespace='proyectotf')),
+    path('proyectotf/', include('apps.proyectotf.urls', namespace='proyectotf')),
 ]
