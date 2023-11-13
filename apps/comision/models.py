@@ -22,6 +22,6 @@ class Miembro_TE (models.Model):
 
 class TribunalEvaluador (models.Model):
     numero_disposicion = models.IntegerField()
-    miembros = models.ManyToManyField(Miembro_TE)
     fecha_disposicion = models.DateField()
     archivo_disposicion = models.FileField(null=True)
+    miembros = models.ManyToManyField(Docente)

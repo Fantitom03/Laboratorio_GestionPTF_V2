@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block titulo %}Editar Tribunal Evaluador{% endblock %}
+{% block tituloBarra %}Editar Tribunal Evaluador{% endblock %}
+{% block contenido %}
+
+<br><br><br>
+<form enctype="multipart/form-data" method="post" action="{% url 'comision:tribunal_edit' tribunal.id %}" >
+    {% csrf_token %}
+    {{ tribunal_form.as_p }}
+    <h3>Miembros del Tribunal:</h3>
+    {{ miembro_formset.management_form }}
+    {% for form in miembro_formset %}
+        {{ form.as_p }}
+    {% endfor %}
+    <button type="submit">Guardar</button>
+</form>
+<a href="{% url 'comision:tribunal_list' %}">VOLVER</a>
+{% endblock %}
