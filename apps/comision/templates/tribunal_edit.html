@@ -6,12 +6,7 @@
 <br><br><br>
 <form enctype="multipart/form-data" method="post" action="{% url 'comision:tribunal_edit' tribunal.id %}" >
     {% csrf_token %}
-    {{ tribunal_form.as_p }}
-    <h3>Miembros del Tribunal:</h3>
-    {{ miembro_formset.management_form }}
-    {% for form in miembro_formset %}
-        {{ form.as_p }}
-    {% endfor %}
+    {{ form.as_p }}
     <button type="submit">Guardar</button>
 </form>
 <a href="{% url 'comision:tribunal_list' %}">VOLVER</a>

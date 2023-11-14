@@ -127,7 +127,7 @@ def docente_create (request):
 def docente_edit(request, pk):
     docente = get_object_or_404(Docente, pk=pk)
     if request.method == 'POST':
-        form = DocenteForm(request.POST, request.FILES, instance=docente)
+        form = DocenteForm(request.POST, instance=docente)
         if form.is_valid():
             docente_editado = form.save(commit=True)
             docente = docente_editado
