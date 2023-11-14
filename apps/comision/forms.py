@@ -11,14 +11,14 @@ class Miembro_TE_Form(forms.ModelForm):
         model = Miembro_TE
         fields = ('docente', 'rol', 'fecha_alta')
 
+
+
 class TribunalEvaluadorForm(forms.ModelForm):
     class Meta:
         model = TribunalEvaluador
-        fields = ('numero_disposicion', 'fecha_disposicion', 'archivo_disposicion', 'miembros')
+        fields = ('numero_disposicion', 'fecha_disposicion', 'archivo_disposicion')
 
 
-    miembros = forms.ModelMultipleChoiceField(
-        queryset = Docente.objects.all(),
-        widget=forms.CheckboxSelectMultiple,
-        required=False
-    )
+
+
+

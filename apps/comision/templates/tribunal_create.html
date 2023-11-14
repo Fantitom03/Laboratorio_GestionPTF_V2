@@ -1,18 +1,18 @@
-{% extends "base.html" %}
-{% block titulo %}Crear Tribunal Evaluador{% endblock %}
-{% block tituloBarra %}Crear Tribunal Evaluador{% endblock %}
+{% extends 'base.html' %}
+
+{% block titulo %}
+    Nuevo Tribunal Evaluador
+{% endblock %}
+
 {% block contenido %}
+    <h1>Nuevo Tribunal Evaluador</h1>
 
-<br><br><br>
-    <form enctype="multipart/form-data" method="post" action="{% url 'comision:tribunal_create' %}"  id="tribunal-form">
+    <form enctype="multipart/form-data"  action="{% url 'comision:tribunal_create' %}" method="post">
         {% csrf_token %}
-        {{ tribunal_form.as_p }}
+        {{ form.as_p }}
 
-        <button type="submit" id="agregar-miembro">Agregar</button>
+        <input type="submit" value="Crear">
     </form>
-
-    <a href="{% url 'comision:tribunal_list' %}">VOLVER</a>
-
 
 
 {% endblock %}

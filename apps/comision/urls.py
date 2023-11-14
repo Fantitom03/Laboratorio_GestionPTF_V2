@@ -13,7 +13,7 @@ urlpatterns = [
 
     # URLs para MiembrosTE
     path('miembrote/', views.miembro_te_list, name='miembrote_list'),
-    path('miembrote/nuevo/', views.miembro_te_create, name='miembrote_create'),
+    path('miembrote/nuevo/<int:pk>', views.miembro_te_create, name='miembrote_create'),
     path('miembrote/<int:pk>/', views.miembro_te_detail, name='miembrote_detail'),
     path('miembrote_delete/<int:pk>/', views.miembro_te_delete, name='miembrote_delete'),
     path('miembrote_edit/<int:pk>/', views.miembro_te_edit, name='miembrote_edit'),

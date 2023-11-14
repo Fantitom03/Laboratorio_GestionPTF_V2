@@ -19,9 +19,12 @@ class Miembro_TE (models.Model):
     rol = models.CharField(max_length=30, choices=rol_op)
     fecha_alta = models.DateField()
 
+    def __str__(self):
+        return f"{self.docente}"
 
 class TribunalEvaluador (models.Model):
     numero_disposicion = models.IntegerField()
     fecha_disposicion = models.DateField()
     archivo_disposicion = models.FileField(null=True)
-    miembros = models.ManyToManyField(Docente)
+    miembros = models.ManyToManyField(Miembro_TE)
+
