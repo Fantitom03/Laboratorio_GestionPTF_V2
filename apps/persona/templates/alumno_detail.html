@@ -1,29 +1,21 @@
 {% extends "base/base.html" %}
 {% block titulo %}Detalle Alumnos{% endblock %}
+{% block titulo_barra %}Detalle Alumnos{% endblock %}
+
 {% block contenido %}
-{% block tituloBarra %}Detalle Alumnos{% endblock %}
-    <br>
-    <br>
+
+    <br><br><br>
+     <a href="{% url 'persona:alumno_list'%}" class="btn btn-secondary">Volver</a>
+    <br><br>
     <h1>Alumno: {{ alumno.nombre }} {{ alumno.apellido }}</h1>
     <p><strong> Datos del alumno: </strong></p>
     <p>Nombre: {{ alumno.nombre }}</p>
     <p>Apellido: {{ alumno.apellido }}</p>
     <p>DNI: {{ alumno.dni }}</p>
     <p>MU: {{ alumno.matricula }}</p>
-		<p>CORREOELECTRONICO: {{ alumno.correo_electronico }}</p>
+    <p>CORREO ELECTRONICO: {{ alumno.correo_electronico }}</p>
 
-
-    <form action="{% url 'persona:alumno_delete' alumno.id %}" method="POST">
-        {% csrf_token %}
-        <input type="hidden" name="id_alumno" value="{{ alumno.id }}">
-        <input type="submit", value="Eliminar">
-        <a href="{% url 'persona:alumno_edit' alumno.id %}" class="btn btn-primary">Editar</a>
-    </form>
-    <br>
-    <br>
-    {% if request.method == "POST" %}
-        <a href="{% url 'persona:alumno_confirm_delete' alumno.id %}" class="btn btn-danger">Eliminar</a>
-        <a href="{% url 'persona:alumno_detail' alumno.id %}" class="btn btn-primary">Cancelar</a>
-    {% endif %}
+    <a href="{% url 'persona:alumno_delete' alumno.id %}" class="btn btn-danger">Eliminar</a>
+    <a href="{% url 'persona:alumno_edit' alumno.id %}" class="btn btn-primary">Editar</a>
 
 {% endblock %}

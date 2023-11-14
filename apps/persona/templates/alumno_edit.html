@@ -1,17 +1,16 @@
 {% extends "base/base.html" %}
 {% block titulo %}Editar Alumno{% endblock %}
+{% block titulo_barra %}Editar Alumno{% endblock %}
+
 {% block contenido %}
-{% block tituloBarra %}Editar Alumno{% endblock %}
-    <br>
-    <br>
-    <br>
-    <form method="post" action="{% url 'persona:alumno_edit' alumno.id %}">
+
+    <br><br><br>
+     <a href="{% url 'persona:alumno_detail' alumno.id %}" class="btn btn-secondary">Volver</a>
+    <br><br>
+    <form method="post" action="{% url 'persona:alumno_edit' alumno.id %}" style="justify-content: center;width: 65%; margin-left: auto; margin-right: auto;">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Guardar</button>
     </form>
-
-    <a href="{% url 'persona:alumno_list' %}">VOLVER</a>
-
 
 {% endblock %}

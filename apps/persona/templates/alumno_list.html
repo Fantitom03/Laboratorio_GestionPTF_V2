@@ -1,14 +1,12 @@
 {% extends "base/base.html" %}
 {% block titulo %}Listado Alumno{% endblock %}
-{% block tituloBarra %}Listado Alumno{% endblock %}
+{% block titulo_barra %}Listado Alumno{% endblock %}
+
 {% block contenido %}
 
-    <br>
-    <br>
-    <br>
-
+    <br><br><br>
     <a href="{% url 'persona:alumno_create' %}" class="btn btn-primary">Agregar Alumno</a>
-
+    <br><br>
     <div id="resultados">
         <table class="table table-bordered table-sm" style="justify-content: center;width: 65%; margin-left: auto; margin-right: auto;">
             <thead>
@@ -21,8 +19,8 @@
                 </tr>
             </thead>
             <tbody>
-            {% if object_list %}
-            {% for alumno in object_list %}
+            {% if alumnos %}
+            {% for alumno in alumnos %}
                 <tr>
                     <td scope="row"><a href="{% url 'persona:alumno_detail' alumno.id %}">{{ alumno.dni }}</a></td>
                     <td>{{ alumno.matricula }}</td>

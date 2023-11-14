@@ -1,0 +1,38 @@
+{% extends "base/base.html" %}
+{% block titulo %} Lista Docentes {% endblock %}
+{% block titulo_barra %} Lista Docentes {% endblock %}
+
+{% block contenido %}
+
+    <br><br><br>
+    <a href="{% url 'persona:docente_create' %}" class="btn btn-primary">Agregar Docente</a>
+    <br><br>
+
+    <div id="resultados">
+
+        <table class="table table-bordered table-sm" style="justify-content: center;width: 65%; margin-left: auto; margin-right: auto;">
+            <thead>
+                <tr>
+                    <th>CUIL</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if docentes %}
+                {% for docente in docentes %}
+                <tr>
+                    <td scope="row"><a href="{% url 'persona:docente_detail' docente.id %}">{{docente.cuil}}</a></td>
+                    <td>{{docente.nombre}}</td>
+                    <td>{{docente.apellido}}</td>
+                </tr>
+                {% endfor %}
+                {% else %}
+                    <h1>No hay registros de Docentes</h1>
+                {% endif %}
+            </tbody>
+        </table>
+
+    </div>
+
+{% endblock %}

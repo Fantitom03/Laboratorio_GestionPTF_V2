@@ -1,0 +1,39 @@
+{% extends "base/base.html" %}
+{% block titulo %}Listado Asesor{% endblock %}
+{% block titulo_barra %}Listado Asesor{% endblock %}
+
+{% block contenido %}
+
+    <br><br><br>
+    <a href="{% url 'persona:asesor_create' %}" class="btn btn-primary">Agregar Asesor</a>
+    <br><br>
+
+    <div id="resultados">
+        <table class="table table-bordered table-sm" style="justify-content: center;width: 65%; margin-left: auto; margin-right: auto;">
+            <thead>
+                <tr>
+                    <th scope="col">DNI</th>
+                    <th scope="col">CURRICULUM</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% if asesores %}
+            {% for asesor in asesores %}
+                <tr>
+                    <td scope="row"><a href="{% url 'persona:asesor_detail' asesor.id %}">{{ asesor.dni }}</a></td>
+                    <td>{{ asesor.curriculum }}</td>
+                    <td>{{ asesor.nombre }}</td>
+                    <td>{{ asesor.apellido }}</td>
+                </tr>
+            {% endfor %}
+            {% else %}
+                <h1>No hay registros de asesores</h1>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+
+{% endblock %}
