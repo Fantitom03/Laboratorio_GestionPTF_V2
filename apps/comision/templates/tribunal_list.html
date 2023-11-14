@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block titulo %}Listado Tribunales Evaluadores{% endblock %}
+{% block tituloBarra %}Listado Tribunales Evaluadores{% endblock %}
+{% block contenido %}
+
+    <br>
+    <br>
+    <br>
+
+    <a href="{% url 'comision:tribunal_create' %}" class="btn btn-primary">Crear Tribunal Evaluador</a>
+
+    <div id="resultados">
+        <table class="table table-bordered table-sm" style="justify-content: center;width: 65%; margin-left: auto; margin-right: auto;">
+            <thead>
+                <tr>
+                    <th scope="col">Número de Disposición</th>
+                    <th scope="col">Fecha de Disposición</th>
+                    <th scope="col">Archivo de Disposición</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for tribunal in tribunales %}
+                <tr>
+                    <td scope="row">{{ tribunal.numero_disposicion }}</td>
+                    <td>{{ tribunal.fecha_disposicion }}</td>
+                    <td> {{ tribunal.archivo_disposicion }}</td>
+                    <td>
+                        <a href="{% url 'comision:tribunal_detail' tribunal.id %}" class="btn btn-primary">Ver Detalles</a>
+                        <a href="{% url 'comision:tribunal_edit' tribunal.id %}" class="btn btn-secondary">Editar</a>
+                        <a href="{% url 'comision:tribunal_delete' tribunal.id %}" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

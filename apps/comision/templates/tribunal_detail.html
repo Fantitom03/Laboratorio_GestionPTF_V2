@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block titulo %}Detalle Tribunal Evaluador{% endblock %}
+{% block tituloBarra %}Detalle Tribunal Evaluador{% endblock %}
+{% block contenido %}
+
+<br>
+<br>
+<h1>Tribunal Evaluador N° {{ tribunal.numero_disposicion }}</h1>
+<p><strong>Fecha de Disposición:</strong> {{ tribunal.fecha_disposicion }}</p>
+<p><strong>Archivo de Disposición:</strong> {{ tribunal.archivo_disposicion }}</p>
+<a class="btn btn-primary" href="{% url 'comision:miembrote_create' tribunal.id %}">AGREGAR</a>
+
+<h3>Miembros del Tribunal:</h3>
+		<div id="resultados">
+        <table class="table table-bordered table-sm" style="justify-content: center;width: 65%; margin-left: auto; margin-right: auto;">
+            <thead>
+                <tr>
+                    <th scope="col">CUIL</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Rol</th>
+                    <th scope="col">Fecha de Alta</th>
+										<th scope="col"> ACCIONES </th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for miembrote in miembros_te %}
+                <tr>
+                    <td scope="row"><a href="{% url 'comision:miembrote_detail' miembrote.id %}">{{ miembrote.docente.cuil }}</a></td>
+                    <td>{{ miembrote.docente.nombre }}</td>
+                    <td>{{ miembrote.docente.apellido }}</td>
+                    <td>{{ miembrote.get_rol_display }}</td>
+                    <td>{{ miembrote.fecha_alta }}</td>
+										<td><a href="{% url 'comision:miembrote_edit' miembrote.id %}" class="btn btn-primary">Editar</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+<a href="{% url 'comision:tribunal_list' %}">VOLVER</a>
+{% endblock %}
