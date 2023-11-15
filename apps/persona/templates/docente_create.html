@@ -1,0 +1,17 @@
+{% extends "base/base.html" %}
+{% block titulo %} Crear Docente {% endblock %}
+{% block titulo_barra %} Crear Docente {% endblock %}
+
+{% block contenido %}
+
+    <br><br><br>
+        <a href="persona:docente_list" class="btn btn-secondary">Volver</a>
+    <br><br>
+
+    <form method="post" action="{% url 'persona:docente_create'%}" style="justify-content: center;width: 65%; margin-left: auto; margin-right: auto;">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+
+{% endblock %}

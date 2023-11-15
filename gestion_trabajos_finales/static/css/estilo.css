@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto:wght@300;400&display=swap');
+
+body{
+    background-color: whitesmoke;
+}
+
+h2{
+    display: flex;
+    position: relative;
+    justify-content: center;
+}
+
+h3{
+    display:grid;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Estilo de la barra */
+
+#barra {
+    background-color: #0088cc;
+}
+
+#barra2 {
+    background-color: #0088cc;
+}
+
+#titulo_barra{
+    font-family:'Roboto';
+    size-adjust: 10px;
+    color: whitesmoke;
+    font-weight: 500 ;
+    font-size: 26px;
+}

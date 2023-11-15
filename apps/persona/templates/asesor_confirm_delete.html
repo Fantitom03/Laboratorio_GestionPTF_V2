@@ -1,0 +1,16 @@
+{% extends "base/base_sb.html" %}
+{% block titulo %}Eliminar{% endblock %}
+{% block titulo_barra %}¡CUIDADO!{% endblock %}
+
+{% block contenido %}
+
+    <br><br><br><br>
+    <form method="post" style="justify-content: center;width: 65%; margin-left: auto; margin-right: auto;">
+        <h3>¿Está seguro de que desea eliminar al asesor {{ asesor.nombre }} {{ asesor.apellido }}?</h3>
+        {% csrf_token %}
+        <button class="btn btn-danger">Eliminar</button>
+        <a href="{% url 'persona:asesor_detail' asesor.id %}" class="btn btn-primary">Cancelar</a>
+    </form>
+
+
+{% endblock %}
