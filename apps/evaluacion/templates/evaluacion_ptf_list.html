@@ -1,0 +1,36 @@
+{% extends 'base/base.html' %}
+{% block titulo %}Lista EvaluacionesPTF{% endblock %}
+{% block titulo_barra %}Lista EvaluacionesPTF{% endblock %}
+
+{% block contenido %}
+    <h1>Evaluaciones del proyecto {{proyecto.titulo}}</h1>
+    <div id="resultados">
+        <table>
+            <thead>
+                <tr>
+                    <th> Informe </th>
+                    <th> Evaluador </th>
+                    <th> Fecha Evaluacion </th>
+                    <th> Estado </th>
+                    <th> Observaciones </th>
+                </tr>
+            </thead>
+            <tbody>
+            {% if evaluaciones %}
+            {% for evaluacion in evaluaciones%}
+                <tr>
+                    <td scope="row">{{evaluacion.informe}}</td>
+                    <td>{{evaluacion.}}</td>
+                    <td>{{}}</td>
+                    <td>{{}}</td>
+                    <td>{{}}</td>
+                </tr>
+            {% %}
+            {% else %}
+                <h1>No hay evaluaciones disponibles</h1>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}
