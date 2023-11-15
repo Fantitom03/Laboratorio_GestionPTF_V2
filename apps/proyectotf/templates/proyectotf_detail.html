@@ -1,0 +1,27 @@
+{% extends "base/base.html" %}
+{% block titulo %}Detalle proyectotf{% endblock %}
+{% block contenido %}
+{% block tituloBarra %}Detalle proyectotf{% endblock %}
+    <br>
+    <br>
+    <h1>Proyecto_TF: {{ proyectotf.proyecto_tf.titulo_ptf }} </h1>
+    <p><strong> Datos del Proyecto TF: </strong></p>
+    <p>Titulo PTF: {{ proyectotf.proyecto_tf.titulo_ptf }}</p>
+    <p>Descripcion: {{ proyectotf.proyecto_tf.descripcion }}</p>
+    <p>Estado: {{ proyectotf.proyecto_tf.estado }}</p>
+    <p>Alumno: {{ proyectotf.alumno }}</p>
+		<p>Director: {{ proyectotf.proyecto_tf.director }}</p>
+		<p>Fecha Presentacion: {{ proyectotf.proyecto_tf.fecha_presentacion }}</p>
+
+
+    <form action="{% url 'proyectotf:proyectotf_delete' proyectotf.id %}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="id_proyectotf" value="{{ proyectotf.id }}">
+        <input type="submit", value="Eliminar">
+        <a href="{% url 'proyectotf:proyectotf_edit' proyectotf.id %}" class="btn btn-primary">Editar</a>
+    </form>
+    <br>
+    <br>
+    <a href="{% url 'proyectotf:proyectotf_list' %}">VOLVER</a>
+
+{% endblock %}
