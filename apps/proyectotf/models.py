@@ -11,9 +11,9 @@ class Proyecto_TF(models.Model):
     )
 
     fecha_presentacion = models.DateField()
-    director = models.OneToOneField(Docente, related_name='director_proyecto', on_delete=models.CASCADE)
-    co_director = models.OneToOneField(Docente, related_name='codirector_proyecto', on_delete=models.CASCADE)
-    asesor = models.OneToOneField(Asesor, related_name='asesor_proyecto', null=True, blank=True,
+    director = models.ForeignKey(Docente, related_name='director_proyecto', on_delete=models.CASCADE)
+    co_director = models.ForeignKey(Docente, related_name='codirector_proyecto', on_delete=models.CASCADE)
+    asesor = models.ForeignKey(Asesor, related_name='asesor_proyecto', null=True, blank=True,
                                   on_delete=models.CASCADE)
     titulo_ptf = models.CharField(max_length=200)
     descripcion = models.TextField()

@@ -21,16 +21,20 @@
                 </tr>
             </thead>
             <tbody>
-            {% for proyecto in proyectotfs %}
-                <tr>
-                    <td scope="row"><a href="{% url 'proyectotf:proyectotf_detail' proyecto.id %}">{{ proyecto.proyecto_tf.titulo_ptf }}</a></td>
-                    <td>{{ proyecto.proyecto_tf.descripcion }}</td>
-                    <td>{{ proyecto.proyecto_tf.estado }}</td>
-                    <td>{{ proyecto.alumno }}</td>
-										<td>{{ proyecto.proyecto_tf.director }}</td>
-										<td>{{ proyecto.proyecto_tf.fecha_presentacion }}</td>
-                </tr>
-            {% endfor %}
+            {% if proyectotfs %}
+                {% for proyecto in proyectotfs %}
+                    <tr>
+                        <td scope="row"><a href="{% url 'proyectotf:proyectotf_detail' proyecto.id %}">{{ proyecto.proyecto_tf.titulo_ptf }}</a></td>
+                        <td>{{ proyecto.proyecto_tf.descripcion }}</td>
+                        <td>{{ proyecto.proyecto_tf.estado }}</td>
+                        <td>{{ proyecto.alumno }}</td>
+                                            <td>{{ proyecto.proyecto_tf.director }}</td>
+                                            <td>{{ proyecto.proyecto_tf.fecha_presentacion }}</td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <h1>No hay proyectos cargados</h1>
+            {% endif %}
             </tbody>
         </table>
     </div>
