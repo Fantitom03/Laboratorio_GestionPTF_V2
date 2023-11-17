@@ -1,13 +1,14 @@
 {% extends "base/base_sb.html" %}
-{% block titulo %}Crear Informetf{% endblock %}
-{% block tituloBarra %}Crear Informetf{% endblock %}
+{% block titulo %}Crear ITF{% endblock %}
+{% block titulo_barra %}Crear ITF{% endblock %}
+
 {% block contenido %}
 
     <br><br><br>
     <a class="btn btn-secondary" href="{% url 'proyectotf:informetf_list' %}">VOLVER</a>
     <br><br>
 
-    <form enctype="multipart/form-data" method="post" action="{% url 'proyectotf:informetf_create' %}">
+    <form enctype="multipart/form-data" method="post" action="{% url 'proyectotf:informetf_create' %}" style="justify-content: center;width: 65%; margin-left: auto; margin-right: auto;">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="btn btn-primary">GUARDAR</button>

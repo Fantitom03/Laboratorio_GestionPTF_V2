@@ -1,9 +1,13 @@
 {% extends "base/base.html" %}
-{% block titulo %}Detalle proyectotf{% endblock %}
+{% block titulo %}Detalle PTF{% endblock %}
+{% block titulo_barra %}Detalle PTF{% endblock %}
+
 {% block contenido %}
-{% block tituloBarra %}Detalle proyectotf{% endblock %}
-    <br>
-    <br>
+
+    <br><br><br>
+    <a class="btn btn-secondary" href="{% url 'proyectotf:proyectotf_list' %}">VOLVER</a>
+    <br><br>
+
     <h1>Proyecto_TF: {{ proyectotf.proyecto_tf.titulo_ptf }} </h1>
     <p><strong> Datos del Proyecto TF: </strong></p>
     <p>Titulo PTF: {{ proyectotf.proyecto_tf.titulo_ptf }}</p>
@@ -17,12 +21,10 @@
     <form action="{% url 'proyectotf:proyectotf_delete' proyectotf.id %}" method="POST">
         {% csrf_token %}
         <input type="hidden" name="id_proyectotf" value="{{ proyectotf.id }}">
-        <input type="submit", value="Eliminar">
+        <input class="btn btn-danger" type="submit", value="Eliminar">
         <a href="{% url 'proyectotf:proyectotf_edit' proyectotf.id %}" class="btn btn-primary">Editar</a>
-				<a href="{% url 'proyectotf:proyectotf_miembro_edit' proyectotf.id %}" class="btn btn-primary">Editar Alumnos</a>
+        <a href="{% url 'proyectotf:proyectotf_miembro_edit' proyectotf.id %}" class="btn btn-primary">Editar Alumnos</a>
     </form>
-    <br>
-    <br>
-    <a href="{% url 'proyectotf:proyectotf_list' %}">VOLVER</a>
+
 
 {% endblock %}

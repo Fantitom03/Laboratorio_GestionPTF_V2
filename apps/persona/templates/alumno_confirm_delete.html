@@ -1,15 +1,16 @@
 {% extends "base/base_sb.html" %}
-{% block titulo %}Detalle Alumnos{% endblock %}
-{% block titulo_barra %}¡CUIDADO!{% endblock %}
+{% block titulo %}Confirmar{% endblock %}
+{% block titulo_barra %}CONFIRMACION ELIMINAR ALUMNO{% endblock %}
 
 {% block contenido %}
 
-    <br><br><br><br>
+    <br><br><br>
     <form method="post" style="justify-content: center;width: 65%; margin-left: auto; margin-right: auto;">
-        <h3>¿Está seguro de que desea eliminar al alumno {{ alumno.nombre }} {{ alumno.apellido }}?</h3>
+        <h1>¿Está seguro de que desea eliminar al alumno {{ alumno.nombre }} {{ alumno.apellido }}?</h1>
         {% csrf_token %}
-        <button class="btn btn-danger">Eliminar</button>
-        <a href="{% url 'persona:alumno_detail' alumno.id %}" class="btn btn-primary">Cancelar</a>
+        <a href="{% url 'persona:alumno_detail' alumno.id %}" class="btn btn-secondary">CANCELAR</a>
+        <button class="btn btn-danger">ELIMINAR</button>
+
     </form>
 
 

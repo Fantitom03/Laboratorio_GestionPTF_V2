@@ -11,7 +11,7 @@
     <form method="post" action="{% url 'persona:docente_edit' docente.id %}" style="justify-content: center;width: 65%; margin-left: auto; margin-right: auto;">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Guardar</button>
+        <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
 
 {% endblock %}
