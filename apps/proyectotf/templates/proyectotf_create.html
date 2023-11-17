@@ -5,10 +5,10 @@
   <br>
   <br>
   <br>
-  <form enctype="multipart/form-data" method="post" action="{% url 'proyectotf:proyectotf_create' %}">
+  <form method="post" action="{% url 'proyectotf:proyectotf_create' %}">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">GUARDAR</button>
+    <button type="submit">guardar</button>
   </form>
 
 	<a href="{% url 'proyectotf:proyectotf_list' %}">VOLVER</a>

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block titulo %}Editar Evaluacion{% endblock %}
+{% block tituloBarra %}Editar Evaluacion{% endblock %}
+{% block contenido %}
+
+<br><br><br>
+<form enctype="multipart/form-data" method="post" action="{% url 'evaluacion:evaluacion_ptf_edit' evaluacion.id %}" >
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar</button>
+</form>
+<a href="{% url 'evaluacion:evaluacion_ptf_list' evaluacion.proyecto_TF.id %}">VOLVER</a>
+{% endblock %}

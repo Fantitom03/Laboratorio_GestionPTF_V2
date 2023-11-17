@@ -14,6 +14,7 @@ class Miembro_CSTF (models.Model):
 
 
 
+
 class Miembro_TE (models.Model):
     docente = models.ForeignKey(Docente, on_delete=models.CASCADE)
     rol_op = (
