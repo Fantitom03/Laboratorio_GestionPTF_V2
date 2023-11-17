@@ -4,9 +4,10 @@
 
 {% block contenido %}
 <br><br><br>
+
     <h1>Evaluaciones del informe {{informe.proyecto_tf.titulo_ptf}}</h1>
     <br><br>
-    <a href="{% url 'evaluacion:evaluacion_itf_create' informe.id %}" class="btn btn-primary">Evaluar</a>
+    <a href="{% url 'evaluacion:evaluacion_itf_create' informe.id %}" class="btn btn-primary">Evaluar ITF</a>
     <br><br>
     <div id="resultados">
         <table class="table table-bordered table-sm" style="justify-content: center;width: 65%; margin-left: auto; margin-right: auto;">
