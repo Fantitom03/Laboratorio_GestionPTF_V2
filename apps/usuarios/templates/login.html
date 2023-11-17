@@ -1,9 +1,9 @@
-{% extends "base/base.html" %}
-
+{% extends "base/base_sb.html" %}
+{% block titulo_barra %}Login{% endblock %}
 {% block contenido %}
-
+<br><br><br>
     <h2>Ingreso al Sistema</h2>
-
+<br>
     {% if message %}
         <div>{{ message }}</div>
     {% endif %}
@@ -13,12 +13,14 @@
         <div class="form-group">
             <input autofocus class="form-control" type="email" name="email" placeholder="Correo Electrónico">
         </div>
+			<br>
         <div class="form-group">
             <input class="form-control" type="password" name="password" placeholder="Password">
         </div>
+			<br>
         <input class="btn btn-primary" type="submit" value="Login">
     </form>
-
+		<br>
     No tienes una cuenta? <a href="{% url 'usuarios:registro' %}">Regístrate aquí.</a>
 
 {% endblock %}

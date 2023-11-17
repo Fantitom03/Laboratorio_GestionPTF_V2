@@ -1,0 +1,28 @@
+{% extends "base/base.html" %}
+{% block titulo %}Detalle informetf{% endblock %}
+{% block tituloBarra %}Detalle informetf{% endblock %}
+{% block contenido %}
+
+    <br>
+    <br>
+    <h1>INFORME_TF: {{ informetf.id }} </h1>
+    <p><strong> Datos del Proyecto TF: </strong></p>
+    <p>Alumno: {{ informetf.alumno }}</p>
+    <p>Archivo ITF: {{ informetf.archivo_itf }}</p>
+    <p>Proyecto TF: {{ informetf.proyecto_tf.titulo_ptf }}</p>
+    <p>Estado: {{ informetf.estado }}</p>
+		<p>Observaciones: {{ informetf.observaciones }}</p>
+		<p>Fecha Presentacion: {{ informetf.proyectotf.fecha_presentacion }}</p>
+
+
+    <form action="{% url 'proyectotf:informetf_delete' informetf.id %}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="id_informetf" value="{{ informetf.id }}">
+        <input type="submit" value="Eliminar">
+        <a href="{% url 'proyectotf:informetf_edit' informetf.id %}" class="btn btn-primary">Editar</a>
+    </form>
+    <br>
+    <br>
+    <a href="{% url 'proyectotf:informetf_list' %}">VOLVER</a>
+
+{% endblock %}

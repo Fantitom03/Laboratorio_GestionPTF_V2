@@ -1,5 +1,7 @@
+
 from django.contrib.auth.decorators import login_required, permission_required
 from django.db import connection
+
 from django.forms import modelformset_factory
 from django.shortcuts import render, redirect, get_object_or_404, redirect
 from django.urls import reverse
@@ -170,6 +172,7 @@ def tribunal_create(request):
 @login_required(login_url='usuarios:login')
 @permission_required('comision.view_tribunalevaluador',
 raise_exception=True)
+
 def tribunal_list(request):
     tribunales = TribunalEvaluador.objects.all()
     return render(request, 'tribunal_list.html', {'tribunales': tribunales})
