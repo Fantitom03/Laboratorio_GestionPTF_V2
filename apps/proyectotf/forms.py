@@ -16,7 +16,7 @@ class CustomForm(forms.ModelForm):
         # Personalizar el mensaje de error agregando una clase CSS
         super().add_error(field, error)
         self.fields[field].widget.attrs.update({'class': 'form-control is-invalid'})
-        
+
 class Proyecto_TF_AlumnoForm(forms.ModelForm):
     class Meta:
         model = Proyecto_TF_Alumno

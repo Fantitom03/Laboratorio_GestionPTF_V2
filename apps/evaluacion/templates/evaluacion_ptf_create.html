@@ -1,16 +1,74 @@
+# template.html
 {% extends 'base/base.html' %}
 {% block titulo %}Nueva Evaluación PTF{% endblock %}
 {% block titulo_barra %}Nueva Evaluación PTF{% endblock %}
-
 {% block contenido %}
 
     <br><br><br>
-        <a href="{% url 'evaluacion:evaluacion_ptf_list' proyecto.id %}" class="btn btn-secondary">Volver</a>
+    <a href="{% url 'evaluacion:evaluacion_ptf_list' proyecto.id %}" class="btn btn-secondary">Volver</a>
     <br><br>
+
     <form method="post" enctype="multipart/form-data" action="{% url 'evaluacion:evaluacion_ptf_create' proyecto.id %}" style="justify-content: center;width: 65%; margin-left: auto; margin-right: auto;">
         {% csrf_token %}
-        {{ form.as_p }}
+        {% for hidden_field in form.hidden_fields %}
+            {{ hidden_field }}
+        {% endfor %}
+        {% for field in form.visible_fields %}
+            <div class="mb-3">
+                {{ field.label_tag }}
+                {{ field }}
+                {% if form.errors %}
+                    {% for error in field.errors %}
+                        <div class="invalid-feedback">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        {% endfor %}
         <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
+
+<script>
+    let fechaEvaluacionInput = document.getElementById("id_fecha_evaluacion");
+    let observacionesTextarea = document.getElementById("id_observaciones");
+
+    fechaEvaluacionInput.addEventListener('change', function validarFecha() {
+        let fechaEvaluacion = new Date(fechaEvaluacionInput.value);
+        let today = new Date();
+
+        if (fechaEvaluacion > today) {
+            fechaEvaluacionInput.classList.add('is-invalid');
+        } else {
+            fechaEvaluacionInput.classList.remove('is-invalid');
+        }
+    });
+
+    let estadoSelect = document.getElementById("id_estado");
+
+    estadoSelect.addEventListener('change', function calificar() {
+        let opcionSeleccionada = estadoSelect.value;
+
+        // Usar el ID generado por Django para el campo de observaciones
+        let observacionesTextarea = document.getElementById("id_observaciones");
+
+        switch (opcionSeleccionada) {
+            case "aprobado":
+                document.getElementById('id_observaciones').innerHTML = "CSFT-Aprobado";
+                observacionesTextarea.disabled = true;
+                break;
+            case "rechazado":
+                document.getElementById('id_observaciones').innerHTML = "CSFT-Rechazado";
+                observacionesTextarea.disabled = true;
+                break;
+            case "observado":
+                document.getElementById('id_observaciones').innerHTML = "CSFT-Observado";
+                observacionesTextarea.disabled = false;
+                break;
+            default:
+                document.getElementById('id_observaciones').innerHTML = "Pendiente";
+                observacionesTextarea.disabled = true;
+                break;
+        }
+    });
+</script>
 
 {% endblock %}
