@@ -18,8 +18,11 @@
     <form action="{% url 'proyectotf:informetf_delete' informetf.id %}" method="POST">
         {% csrf_token %}
         <input type="hidden" name="id_informetf" value="{{ informetf.id }}">
+
+				{% if perms.proyectotf.delete_informe_tf and  perms.proyectotf.edit_informe_tf  %}
         <input type="submit" value="Eliminar">
         <a href="{% url 'proyectotf:informetf_edit' informetf.id %}" class="btn btn-primary">Editar</a>
+				{% endif %}
     </form>
     <br>
     <br>

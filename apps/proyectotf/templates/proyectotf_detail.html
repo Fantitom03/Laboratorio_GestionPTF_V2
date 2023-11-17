@@ -17,12 +17,21 @@
     <form action="{% url 'proyectotf:proyectotf_delete' proyectotf.id %}" method="POST">
         {% csrf_token %}
         <input type="hidden" name="id_proyectotf" value="{{ proyectotf.id }}">
+
+			{% if perms.proyectotf.delete_proyecto_tf and  perms.proyectotf.edit_proyecto_tf and perms.proyectotf.edit_proyecto_tf_alumno  %}
+
         <input type="submit", value="Eliminar">
         <a href="{% url 'proyectotf:proyectotf_edit' proyectotf.id %}" class="btn btn-primary">Editar</a>
-				<a href="{% url 'proyectotf:proyectotf_miembro_edit' proyectotf.id %}" class="btn btn-primary">Editar Alumnos</a>
+				<a href="{% url 'proyectotf:proyectotf_miembros_edit' proyectotf.id %}" class="btn btn-primary">Editar Alumnos</a>
+			{% endif %}
     </form>
     <br>
     <br>
+
+		{% if perms.proyectotf.delete_proyecto_tf and  perms.proyectotf.edit_proyecto_tf and perms.proyectotf.edit_proyecto_tf_alumno  %}
     <a href="{% url 'proyectotf:proyectotf_list' %}">VOLVER</a>
+		{% else %}
+		<a href="{% url 'usuarios:usuario' %}">VOLVER</a>
+		{% endif %}
 
 {% endblock %}

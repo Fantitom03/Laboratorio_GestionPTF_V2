@@ -67,11 +67,19 @@ def evaluacion_ptf_delete (request, pk):
         return redirect('evaluacion:evaluacion_ptf_list', evaluacion.proyecto_TF.id)
     return render(request, 'evaluacion_ptf_confirm_delete.html', {'evaluacion': evaluacion})
 
+
+@login_required(login_url='usuarios:login')
+@permission_required('evaluacion.view_evaluacionitf',
+raise_exception=True)
 def evaluacion_itf_list (request, pk):
     informe = get_object_or_404(Informe_TF, pk=pk)
     evaluaciones = EvaluacionITF.objects.filter(informe_TF=informe)
     return render(request, 'evaluacion_itf_list.html', {'evaluaciones':evaluaciones, 'informe':informe})
 
+
+@login_required(login_url='usuarios:login')
+@permission_required('evaluacion.add_evaluacionitf',
+raise_exception=True)
 def evaluacion_itf_create (request, pk):
     informe = get_object_or_404(Informe_TF, pk=pk)
 
@@ -87,6 +95,10 @@ def evaluacion_itf_create (request, pk):
         form = EvaluacionITF_Form()
     return render(request, 'evaluacion_itf_create.html', {'form':form, 'informe':informe})
 
+
+@login_required(login_url='usuarios:login')
+@permission_required('evaluacion.change_evaluacionitf',
+raise_exception=True)
 def evaluacion_itf_edit (request, pk):
     evaluacion = get_object_or_404(EvaluacionITF, pk=pk)
     if request.method == 'POST':
@@ -105,6 +117,10 @@ def evaluacion_itf_edit (request, pk):
     return render(request, 'evaluacion_itf_edit.html', {'form':form, 'evaluacion':evaluacion})
 
 
+
+@login_required(login_url='usuarios:login')
+@permission_required('evaluacion.delete_evaluacionpitf',
+raise_exception=True)
 def evaluacion_itf_delete(request, pk):
     evaluacion = get_object_or_404(EvaluacionITF, pk=pk)
     if request.method == 'POST':

@@ -20,13 +20,13 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', TemplateView.as_view(template_name='base/home.html'), name='home'),
+    #path('', TemplateView.as_view(template_name='base/home.html'), name='home'),
     #path('login/', TemplateView.as_view(template_name='base/login.html'), name='login'),
     #path('mantenimiento/', TemplateView.as_view(template_name='./templates/base/mantenimiento/Mantenimiento.html'), name='mantenimiento'),
     path('persona/', include('apps.persona.urls', namespace='persona')),
     path('comision/', include('apps.comision.urls', namespace='comision')),
     path('evaluacion/', include('apps.evaluacion.urls', namespace='evaluacion')),
     path('proyectotf/', include('apps.proyectotf.urls', namespace='proyectotf')),
-    path('usuarios/', include('apps.usuarios.urls', namespace='usuarios')),
+    path('', include('apps.usuarios.urls', namespace='usuarios')),
 
 ]

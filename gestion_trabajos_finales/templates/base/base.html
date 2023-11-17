@@ -25,6 +25,32 @@
                             <li class="nav-item">
                               <a class="nav-link active" aria-current="page" href="#" style="color: whitesmoke;">Inicio</a>
                             </li>
+														{% if perms.comison.view_tribunalevaluador %}
+														<li class="nav-item">
+                              <a class="nav-link active" aria-current="page" href="{% url 'comision:tribunal_list' %}" style="color: whitesmoke;">Tribunales</a>
+                            </li>
+														{% endif %}
+
+														{% if perms.proyectotf.view_proyecto_tf %}
+														<li class="nav-item">
+                              <a class="nav-link active" aria-current="page" href="{% url 'proyectotf:proyectotf_list' %}" style="color: whitesmoke;">Proyectos</a>
+                            </li>
+														{% endif %}
+
+														{% if perms.proyectotf.view_informe_tf %}
+														<li class="nav-item">
+                              <a class="nav-link active" aria-current="page" href="{% url 'proyectotf:informetf_list' %}" style="color: whitesmoke;">Informes</a>
+                            </li>
+														{% endif %}
+
+														{% if perms.proyectotf.detail_proyecto_tf %}
+														<li class="nav-item">
+                              <a class="nav-link active" aria-current="page" href="{% url 'proyectotf:alumno_ptf'  %}" style="color: whitesmoke;">VER PTF</a>
+                            </li>
+														{% endif %}
+
+
+
                           </ul>
                         </div>
                     </div>

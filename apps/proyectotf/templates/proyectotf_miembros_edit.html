@@ -5,7 +5,7 @@
     <br>
     <br>
     <br>
-    <form method="post" action="{% url 'proyectotf:proyectotf_miembro_edit' proyectotf.id %}">
+    <form method="post" action="{% url 'proyectotf:proyectotf_miembros_edit' proyectotf.id %}">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Guardar</button>

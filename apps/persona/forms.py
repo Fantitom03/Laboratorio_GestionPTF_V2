@@ -1,6 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
 from .models import Docente, Alumno, Asesor
+import  re
 
 class CustomForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
@@ -22,7 +23,8 @@ class AlumnoForm(forms.ModelForm):
             'nombre',
             'apellido',
             'matricula',
-            'correo_electronico'
+            'correo_electronico',
+            'crear_usuario',
         )
         labels = {
             'dni' : 'DNI',
@@ -30,6 +32,7 @@ class AlumnoForm(forms.ModelForm):
             'apellido': 'Apellido',
             'matricula' : 'Matricula',
             'correo_electronico': 'Correo Electrónico',
+            'crear_usuario': 'Crear Usuario',
         }
 
     def clean_dni(self):
@@ -43,20 +46,16 @@ class AlumnoForm(forms.ModelForm):
 
     def clean_nombre(self):
         nombre = self.cleaned_data['nombre']
-
-        # Verifica que el nombre solo contenga letras
-        if not nombre.isalpha():
-            raise ValidationError("El nombre debe contener solo letras.")
-
+        # Verifica que el nombre solo contenga letras y espacios
+        if not re.match('^[a-zA-Z ]+$', nombre):
+            raise ValidationError("El nombre solo debe contener letras y espacios.")
         return nombre
 
     def clean_apellido(self):
         apellido = self.cleaned_data['apellido']
-
-        # Verifica que el apellido solo contenga letras
-        if not apellido.isalpha():
-            raise ValidationError("El apellido debe contener solo letras.")
-
+        # Verifica que el apellido solo contenga letras y espacios
+        if not re.match('^[a-zA-Z ]+$', apellido):
+            raise ValidationError("El apellido solo debe contener letras y espacios.")
         return apellido
 
     def clean_matricula(self):
@@ -67,6 +66,15 @@ class AlumnoForm(forms.ModelForm):
             raise ValidationError("La matricula debe contener solo números.")
 
         return matricula
+
+    def clean_crear_usuario(self):
+        crear_usuario = self.cleaned_data['crear_usuario']
+
+        # Verifica que el campo crear_usuario sea un booleano
+        if not isinstance(crear_usuario, bool):
+            raise ValidationError("El campo crear_usuario debe ser un booleano.")
+
+        return crear_usuario
 
     # Agrega métodos clean adicionales para otros campos según sea necesario
 

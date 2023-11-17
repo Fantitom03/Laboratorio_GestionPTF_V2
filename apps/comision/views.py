@@ -11,7 +11,7 @@ from .models import Miembro_CSTF, Miembro_TE, TribunalEvaluador
 
 
 @login_required(login_url='usuarios:login')
-@permission_required('comision.view_miembrocstf',
+@permission_required('comision.view_miembro_cstf',
 raise_exception=True)
 
 def miembrocstf_list(request):
@@ -22,7 +22,7 @@ def miembrocstf_list(request):
 
 # Vista para mostrar detalles de un miembrocstf específico
 @login_required(login_url='usuarios:login')
-@permission_required('comision.view_miembrocstf',
+@permission_required('comision.view_miembro_cstf',
 raise_exception=True)
 def miembrocstf_detail(request, pk):
     miembrocstf = get_object_or_404(Miembro_CSTF, pk=pk)
@@ -31,7 +31,7 @@ def miembrocstf_detail(request, pk):
 
 # Vista para crear un nuevo miembrocstf
 @login_required(login_url='usuarios:login')
-@permission_required('comision.add_miembrocstf',
+@permission_required('comision.add_miembro_cstf',
 raise_exception=True)
 def miembrocstf_create(request):
     if request.method == 'POST':
@@ -49,7 +49,7 @@ def miembrocstf_create(request):
 
 # Vista para actualizar un miembrocstf existente
 @login_required(login_url='usuarios:login')
-@permission_required('comision.change_miembrocstf',
+@permission_required('comision.change_miembro_cstf',
 raise_exception=True)
 def miembrocstf_edit(request, pk):
     miembrocstf = get_object_or_404(Miembro_CSTF, pk=pk)
@@ -70,7 +70,7 @@ def miembrocstf_edit(request, pk):
 
 # Vista para eliminar un docente existente
 @login_required(login_url='usuarios:login')
-@permission_required('comision.delete_miembrocstf',
+@permission_required('comision.delete_miembro_cstf',
 raise_exception=True)
 def miembrocstf_delete(request, pk):
     if request.method == 'POST':
@@ -90,7 +90,7 @@ def miembrocstf_delete(request, pk):
 #MIEMBROS TRIBUNAL EVALUADOR
 #
 @login_required(login_url='usuarios:login')
-@permission_required('comision.add_miembrote',
+@permission_required('comision.add_miembro_te',
 raise_exception=True)
 def miembro_te_create(request, pk):
     tribunal = TribunalEvaluador.objects.get(pk=pk)
@@ -111,7 +111,7 @@ def miembro_te_create(request, pk):
     return render(request, 'miembrote_create.html', {'form': form, 'tribunal': tribunal})
 
 @login_required(login_url='usuarios:login')
-@permission_required('comision.change_miembrote',
+@permission_required('comision.change_miembro_te',
 raise_exception=True)
 def miembro_te_edit(request, pk):
     miembrote = get_object_or_404(Miembro_TE, pk=pk)
@@ -133,7 +133,7 @@ def miembro_te_edit(request, pk):
 
 
 @login_required(login_url='usuarios:login')
-@permission_required('comision.delete_miembrote',
+@permission_required('comision.delete_miembro_te',
 raise_exception=True)
 def miembro_te_delete(request, pk):
     miembrote = get_object_or_404(Miembro_TE, pk=pk)
