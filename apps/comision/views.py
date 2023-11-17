@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required, permission_required
 from django.db import connection
 from django.forms import modelformset_factory
 from django.shortcuts import render, redirect, get_object_or_404, redirect
@@ -6,6 +7,11 @@ from django.contrib import messages
 from .forms import Miembro_CSTF_Form, Miembro_TE_Form, TribunalEvaluadorForm
 from .models import Miembro_CSTF, Miembro_TE, TribunalEvaluador
 
+
+@login_required(login_url='usuarios:login')
+@permission_required('comision.view_miembrocstf',
+raise_exception=True)
+
 def miembrocstf_list(request):
     cstf = Miembro_CSTF.objects.all()
     return render(request, 'cstf_list.html', {'cstf': cstf})
@@ -13,12 +19,18 @@ def miembrocstf_list(request):
 
 
 # Vista para mostrar detalles de un miembrocstf específico
+@login_required(login_url='usuarios:login')
+@permission_required('comision.view_miembrocstf',
+raise_exception=True)
 def miembrocstf_detail(request, pk):
     miembrocstf = get_object_or_404(Miembro_CSTF, pk=pk)
     return render(request, 'cstf_detail.html', {'miembrocstf': miembrocstf})
 
 
 # Vista para crear un nuevo miembrocstf
+@login_required(login_url='usuarios:login')
+@permission_required('comision.add_miembrocstf',
+raise_exception=True)
 def miembrocstf_create(request):
     if request.method == 'POST':
         form = Miembro_CSTF_Form(request.POST)
@@ -34,6 +46,9 @@ def miembrocstf_create(request):
 
 
 # Vista para actualizar un miembrocstf existente
+@login_required(login_url='usuarios:login')
+@permission_required('comision.change_miembrocstf',
+raise_exception=True)
 def miembrocstf_edit(request, pk):
     miembrocstf = get_object_or_404(Miembro_CSTF, pk=pk)
     if request.method == 'POST':
@@ -52,6 +67,9 @@ def miembrocstf_edit(request, pk):
 
 
 # Vista para eliminar un docente existente
+@login_required(login_url='usuarios:login')
+@permission_required('comision.delete_miembrocstf',
+raise_exception=True)
 def miembrocstf_delete(request, pk):
     if request.method == 'POST':
         if 'id_miembrocstf' in request.POST:
@@ -69,7 +87,9 @@ def miembrocstf_delete(request, pk):
 #
 #MIEMBROS TRIBUNAL EVALUADOR
 #
-
+@login_required(login_url='usuarios:login')
+@permission_required('comision.add_miembrote',
+raise_exception=True)
 def miembro_te_create(request, pk):
     tribunal = TribunalEvaluador.objects.get(pk=pk)
 
@@ -88,8 +108,9 @@ def miembro_te_create(request, pk):
         form = Miembro_TE_Form()
     return render(request, 'miembrote_create.html', {'form': form, 'tribunal': tribunal})
 
-
-# Vista para actualizar un miembro de TribunalEvaluador existente
+@login_required(login_url='usuarios:login')
+@permission_required('comision.change_miembrote',
+raise_exception=True)
 def miembro_te_edit(request, pk):
     miembrote = get_object_or_404(Miembro_TE, pk=pk)
 
@@ -109,8 +130,9 @@ def miembro_te_edit(request, pk):
 
 
 
-
-# Vista para eliminar un miembro de TribunalEvaluador existente
+@login_required(login_url='usuarios:login')
+@permission_required('comision.delete_miembrote',
+raise_exception=True)
 def miembro_te_delete(request, pk):
     miembrote = get_object_or_404(Miembro_TE, pk=pk)
     if request.method == 'POST':
@@ -129,7 +151,9 @@ def miembro_te_delete(request, pk):
 #
 
 
-
+@login_required(login_url='usuarios:login')
+@permission_required('comision.add_tribunalevaluador',
+raise_exception=True)
 def tribunal_create(request):
     if request.method == 'POST':
         form = TribunalEvaluadorForm(request.POST, request.FILES)
@@ -143,18 +167,24 @@ def tribunal_create(request):
 
 
 
-
+@login_required(login_url='usuarios:login')
+@permission_required('comision.view_tribunalevaluador',
+raise_exception=True)
 def tribunal_list(request):
     tribunales = TribunalEvaluador.objects.all()
     return render(request, 'tribunal_list.html', {'tribunales': tribunales})
 
-
+@login_required(login_url='usuarios:login')
+@permission_required('comision.view_tribunalevaluador',
+raise_exception=True)
 def tribunal_detail(request, pk):
     tribunal = get_object_or_404(TribunalEvaluador, pk=pk)
     miembros_te = tribunal.miembros.all()
     return render(request, 'tribunal_detail.html', {'tribunal': tribunal, 'miembros_te': miembros_te})
 
-
+@login_required(login_url='usuarios:login')
+@permission_required('comision.change_tribunalevaluador',
+raise_exception=True)
 def tribunal_edit(request, pk):
     tribunal = get_object_or_404(TribunalEvaluador, pk=pk)
     if request.method == 'POST':
@@ -168,7 +198,9 @@ def tribunal_edit(request, pk):
         form = TribunalEvaluadorForm(instance=tribunal)
     return render(request, 'tribunal_edit.html', {'form': form, 'tribunal': tribunal})
 
-
+@login_required(login_url='usuarios:login')
+@permission_required('comision.delete_tribunalevaluador',
+raise_exception=True)
 def tribunal_delete(request, pk):
     tribunal = get_object_or_404(TribunalEvaluador, pk=pk)
     if request.method == 'POST':

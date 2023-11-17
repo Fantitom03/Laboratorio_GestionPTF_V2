@@ -2,8 +2,8 @@
 {% block titulo %}Listado Tribunales Evaluadores{% endblock %}
 {% block tituloBarra %}Listado Tribunales Evaluadores{% endblock %}
 {% block contenido %}
-
-    <br>
+	{% if perms.comision.view_tribunalevaluador %}
+		<br>
     <br>
     <br>
 
@@ -35,5 +35,5 @@
             </tbody>
         </table>
     </div>
-
+	{% endif %}
 {% endblock %}
