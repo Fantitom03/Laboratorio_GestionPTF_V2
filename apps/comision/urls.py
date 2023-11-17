@@ -13,7 +13,7 @@ urlpatterns = [
 
     # URLs para MiembrosTE
     path('miembrote/nuevo/<int:pk>/', views.miembro_te_create, name='miembrote_create'),
-    path('miembrote_delete/<int:pk>/<int:tpk>', views.miembro_te_delete, name='miembrote_delete'),
+    path('miembrote_delete/<int:pk>/', views.miembro_te_delete, name='miembrote_delete'),
     path('miembrote_edit/<int:pk>/', views.miembro_te_edit, name='miembrote_edit'),
 
     # URLs para TribunalEvaluador

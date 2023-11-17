@@ -32,7 +32,7 @@
                     <td>{{ miembrote.get_rol_display }}</td>
                     <td>{{ miembrote.fecha_alta }}</td>
                     <td>
-                        <form method="post" action="{% url 'comision:miembrote_delete' miembrote.id tpk=tribunal.id %}" >
+                        <form method="post" action="{% url 'comision:miembrote_delete' miembrote.id %}" >
                             {% csrf_token %}
                             <input type="hidden" value="{{ tribunal.id }}" name="tribunal">
                             <input type="submit" value="Eliminar" class="btn btn-danger" >
