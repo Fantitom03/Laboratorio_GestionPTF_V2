@@ -8,7 +8,7 @@
   <form method="post" action="{% url 'proyectotf:proyectotf_create' %}">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit"><a href="{% url 'proyectotf:proyectotf_miembros_create' %}">GUARDAR</a></button>
+    <button type="submit">guardar</button>
   </form>
 
 	<a href="{% url 'proyectotf:proyectotf_list' %}">VOLVER</a>

@@ -22,9 +22,8 @@ def proyectotf_create(request):
     if request.method == 'POST':
         form = Proyecto_TF_Form(request.POST)
         if form.is_valid():
-            nuevo_proyectotf = form.save(commit=True)
-            messages.success(request, 'Se ha agregado correctamente el proyectotf {}'.format(nuevo_proyectotf))
-            return render(request, 'proyectotf_miembros_create.html', {'form': form})
+            form.save()
+            return redirect('proyectotf:proyectotf_list')
     else:
         form = Proyecto_TF_Form()
     return render(request, 'proyectotf_create.html', {'form': form})
@@ -68,8 +67,8 @@ def proyectotf_delete(request, pk):
     if request.method == 'POST':
         if 'id_proyectotf' in request.POST:
             proyectotf_id = request.POST['id_proyectotf']
-            proyectotf = get_object_or_404(Proyecto_TF, pk=proyectotf_id)
-            nombre_proyectotf = proyectotf.titulo_ptf
+            proyectotf = get_object_or_404(Proyecto_TF_Alumno, pk=proyectotf_id)
+            nombre_proyectotf = proyectotf.proyecto_tf.titulo_ptf
             proyectotf.delete()
             messages.success(request, 'Se ha eliminado exitosamente el Proyecto_TF {}'.format(nombre_proyectotf))
         else:
