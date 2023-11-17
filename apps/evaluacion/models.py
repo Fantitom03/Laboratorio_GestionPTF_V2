@@ -8,7 +8,11 @@ class EvaluacionPTF(models.Model):
         ('observado', 'Observado'),
         ('rechazado', 'Rechazado')
     )
-
+    evaluador_op = (
+        ('comision', 'Comision de Seguimiento de Trabajo Final'),
+        ('tribunal', 'Tribunal Evaluador')
+    )
+    evaluador = models.CharField(max_length=50, choices=evaluador_op)
     proyecto_TF = models.ForeignKey(Proyecto_TF, on_delete = models.CASCADE)
     informe = models.FileField(blank=True, null=True)
     fecha_evaluacion = models.DateField()
