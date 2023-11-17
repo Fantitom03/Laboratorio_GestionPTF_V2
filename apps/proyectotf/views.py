@@ -8,7 +8,7 @@ from django.contrib.auth import authenticate, login, logout
 
 def proyectotf_list(request):
     proyectotfs = Proyecto_TF_Alumno.objects.all()
-    return render(request, 'proyectotf_list.html', {'proyectotfs': proyectotfs})
+    return render(request, 'proyectotf_list.html', {'proyectotfs': proyectotfs })
 
 
 
