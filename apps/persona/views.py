@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required, permission_required
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
@@ -10,14 +11,30 @@ from .forms import AlumnoForm, AsesorForm, DocenteForm
 #ALUMNOS
 #-----------
 
+@login_required(login_url='usuarios:login')
+@permission_required('persona.view_alumno',
+raise_exception=True)
 def alumno_list (request):
     alumnos = Alumno.objects.all().order_by('dni')
     return render(request, 'alumno_list.html', {'alumnos':alumnos})
 
+
+
+
+
+
+
+@login_required(login_url='usuarios:login')
+@permission_required('persona.view_alumno',
+raise_exception=True)
 def alumno_detail (request, pk):
     alumno = get_object_or_404(Alumno, pk=pk)
     return render(request, 'alumno_detail.html', {'alumno': alumno})
 
+
+@login_required(login_url='usuarios:login')
+@permission_required('persona.add_alumno',
+raise_exception=True)
 def alumno_create (request):
     if request.method == 'POST':
         form = AlumnoForm(request.POST)
@@ -28,6 +45,10 @@ def alumno_create (request):
         form = AlumnoForm()
     return render(request, 'alumno_create.html', {'form':form})
 
+
+@login_required(login_url='usuarios:login')
+@permission_required('persona.change_alumno',
+raise_exception=True)
 def alumno_edit (request, pk):
     alumno = get_object_or_404(Alumno, pk=pk)
     if request.method == 'POST':
@@ -42,6 +63,10 @@ def alumno_edit (request, pk):
 
     return render(request, 'alumno_edit.html', {'form':form, 'alumno':alumno})
 
+
+@login_required(login_url='usuarios:login')
+@permission_required('persona.delete_alumno',
+raise_exception=True)
 def alumno_delete (request, pk):
     alumno = get_object_or_404(Alumno, pk=pk)
     if request.method == 'POST':
@@ -54,16 +79,25 @@ def alumno_delete (request, pk):
 #ASESORES
 #-----------
 
+@login_required(login_url='usuarios:login')
+@permission_required('persona.view_asesor',
+raise_exception=True)
 def asesor_list(request):
     asesores = Asesor.objects.all()
     return render(request, 'asesor_list.html', {'asesores': asesores})
 
+
+@login_required(login_url='usuarios:login')
+@permission_required('persona.view_alumno',
+raise_exception=True)
 def asesor_detail(request, pk):
     asesor = get_object_or_404(Asesor, pk=pk)
     return render(request, 'asesor_detail.html', {'asesor': asesor})
 
 
-
+@login_required(login_url='usuarios:login')
+@permission_required('persona.add_asesor',
+raise_exception=True)
 def asesor_create(request):
     if request.method == 'POST':
         form = AsesorForm(request.POST, request.FILES)
@@ -76,7 +110,9 @@ def asesor_create(request):
     return render(request, 'asesor_create.html', {'form': form})
 
 
-
+@login_required(login_url='usuarios:login')
+@permission_required('persona.change_asesor',
+raise_exception=True)
 def asesor_edit(request, pk):
     asesor = get_object_or_404(Asesor, pk=pk)
     if request.method == 'POST':
@@ -94,6 +130,10 @@ def asesor_edit(request, pk):
     return render(request, 'asesor_edit.html', {'form': form, 'asesor': asesor})
 
 
+
+@login_required(login_url='usuarios:login')
+@permission_required('persona.delete_asesor',
+raise_exception=True)
 def asesor_delete(request, pk):
     asesor = get_object_or_404(Asesor, pk=pk)
     if request.method == 'POST':
@@ -105,14 +145,26 @@ def asesor_delete(request, pk):
 #DOCENTES
 #-----------
 
+
+@login_required(login_url='usuarios:login')
+@permission_required('persona.view_docente',
+raise_exception=True)
 def docente_list (request):
     docentes = Docente.objects.all()
     return render(request, 'docente_list.html', {'docentes': docentes})
 
+
+@login_required(login_url='usuarios:login')
+@permission_required('persona.view_docente',
+raise_exception=True)
 def docente_detail (request, pk):
     docente = get_object_or_404(Docente,pk=pk)
     return render(request, 'docente_detail.html', {'docente':docente})
 
+
+@login_required(login_url='usuarios:login')
+@permission_required('persona.add_docente',
+raise_exception=True)
 def docente_create (request):
     if request.method == 'POST':
         form = DocenteForm(request.POST)
@@ -123,6 +175,10 @@ def docente_create (request):
         form = DocenteForm()
     return render(request, 'docente_create.html', {'form':form})
 
+
+@login_required(login_url='usuarios:login')
+@permission_required('persona.change_docente',
+raise_exception=True)
 def docente_edit(request, pk):
     docente = get_object_or_404(Docente, pk=pk)
     if request.method == 'POST':
@@ -139,6 +195,9 @@ def docente_edit(request, pk):
     return render(request, 'docente_edit.html', {'form': form, 'docente': docente})
 
 
+@login_required(login_url='usuarios:login')
+@permission_required('persona.delete_docente',
+raise_exception=True)
 def docente_delete(request, pk):
     docente = get_object_or_404(Docente, pk=pk)
     if request.method == 'POST':

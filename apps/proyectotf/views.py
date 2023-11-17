@@ -1,37 +1,51 @@
+from django.contrib.auth.decorators import login_required, permission_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from django.contrib import messages
 from .forms import Proyecto_TF_AlumnoForm, Proyecto_TF_Form, Informe_TF_Form
-from .models import Proyecto_TF_Alumno, Informe_TF, Proyecto_TF
+from .models import Proyecto_TF_Alumno, Informe_TF
+from apps.persona.models import Alumno
+from django.contrib.auth.models import Permission
 from django.contrib.auth import authenticate, login, logout
 
 
+@login_required(login_url='usuarios:login')
+@permission_required('proyectotf.view_proyecto_tf',
+raise_exception=True)
 def proyectotf_list(request):
     proyectotfs = Proyecto_TF_Alumno.objects.all()
-    for proyecto in proyectotfs:
-        print(proyecto.alumno)
-
     return render(request, 'proyectotf_list.html', {'proyectotfs': proyectotfs})
 
 
 
 # Vista para mostrar detalles de un proyectotf específico
+@login_required(login_url='usuarios:login')
+@permission_required('proyectotf.detail_proyecto_tf',
+raise_exception=True)
 def proyectotf_detail(request, pk):
     proyectotf = get_object_or_404(Proyecto_TF_Alumno, pk=pk)
     return render(request, 'proyectotf_detail.html', {'proyectotf': proyectotf})
 
 
+@login_required(login_url='usuarios:login')
+@permission_required('proyectotf.add_proyecto_tf',
+raise_exception=True)
 def proyectotf_create(request):
     if request.method == 'POST':
         form = Proyecto_TF_Form(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('proyectotf:proyectotf_miembros_create')
+            return redirect('proyectotf:proyectotf_list')
     else:
         form = Proyecto_TF_Form()
     return render(request, 'proyectotf_create.html', {'form': form})
 
+
+
 # Vista para crear un nuevo proyectotf
+@login_required(login_url='usuarios:login')
+@permission_required('proyectotf.add_proyecto_tf_alumno',
+raise_exception=True)
 def proyectotf_miembros_create(request):
     if request.method == 'POST':
         form = Proyecto_TF_AlumnoForm(request.POST)
@@ -43,6 +57,31 @@ def proyectotf_miembros_create(request):
         form = Proyecto_TF_AlumnoForm()
     return render(request, 'proyectotf_miembros_create.html', {'form': form})
 
+
+@login_required(login_url='usuarios:login')
+@permission_required('proyectotf.change_proyecto_tf_alumno',
+raise_exception=True)
+# Vista para actualizar un proyectotf existente
+def proyectotf_miembros_edit(request, pk):
+    proyectotf = get_object_or_404(Proyecto_TF_Alumno, pk=pk)
+    if request.method == 'POST':
+        form = Proyecto_TF_AlumnoForm(request.POST, instance=proyectotf)
+        if form.is_valid():
+            proyectotf_editado = form.save(commit=True)
+            proyectotf = proyectotf_editado
+            proyectotf.save()
+            messages.success(request, 'Se ha actualizado correctamente el Proyecto_TF')
+            return redirect('proyectotf:proyectotf_detail', pk=proyectotf.pk)
+        else:
+            messages.error(request, 'Por favor, corrija los errores en el formulario.')
+    else:
+        form = Proyecto_TF_AlumnoForm(instance=proyectotf)
+    return render(request, 'proyectotf_miembros_edit.html', {'form': form, 'proyectotf': proyectotf})
+
+
+@login_required(login_url='usuarios:login')
+@permission_required('proyectotf.change_proyecto_tf',
+raise_exception=True)
 def proyectotf_edit(request, pk):
     proyectotf_relacion = get_object_or_404(Proyecto_TF_Alumno, pk=pk)
     if request.method == 'POST':
@@ -60,28 +99,12 @@ def proyectotf_edit(request, pk):
     return render(request, 'proyectotf_edit.html', {'form': form, 'proyectotf_relacion': proyectotf_relacion})
 
 
-def proyectotf_miembro_edit(request, pk):
-    proyectotf = get_object_or_404(Proyecto_TF_Alumno, pk=pk)
-    if request.method == 'POST':
-        form = Proyecto_TF_AlumnoForm(request.POST, instance=proyectotf)
-        if form.is_valid():
-            proyectotf_editado = form.save(commit=True)
-            proyectotf = proyectotf_editado
-            proyectotf.save()
-            messages.success(request, 'Se ha actualizado correctamente el Proyecto_TF')
-            return redirect('proyectotf:proyectotf_detail', pk=proyectotf.pk)
-        else:
-            messages.error(request, 'Por favor, corrija los errores en el formulario.')
-    else:
-        form = Proyecto_TF_AlumnoForm(instance=proyectotf)
-    return render(request, 'proyectotf_miembros_edit.html', {'form': form, 'proyectotf': proyectotf})
-
-
-
-
 
 
 # Vista para eliminar un proyectotf existente
+@login_required(login_url='usuarios:login')
+@permission_required('proyectotf.delete_proyecto_tf',
+raise_exception=True)
 def proyectotf_delete(request, pk):
     if request.method == 'POST':
         if 'id_proyectotf' in request.POST:
@@ -94,21 +117,42 @@ def proyectotf_delete(request, pk):
             messages.error(request, 'Debe indicar qué Proyecto_TF desea eliminar')
     return redirect(reverse('proyectotf:proyectotf_list'))
 
+
+@login_required(login_url='usuarios:login')
+@permission_required('proyectotf.detail_proyecto_tf',
+raise_exception=True)
+def alumno_ptf(request):
+
+    alumno = get_object_or_404(Alumno, dni=request.user.username)
+
+    proyecto = get_object_or_404(Proyecto_TF_Alumno, alumno=alumno)
+    return redirect('proyectotf:proyectotf_detail', pk=proyecto.pk)
+
 #
 #
 #
 #
 #
 
+@login_required(login_url='usuarios:login')
+@permission_required('proyectotf.view_informe_tf',
+raise_exception=True)
 def informetf_list(request):
     informetfs = Informe_TF.objects.all()
     return render(request, 'informetf_list.html', {'informetfs': informetfs})
 
+
+@login_required(login_url='usuarios:login')
+@permission_required('proyectotf.detail_informe_tf',
+raise_exception=True)
 def informetf_detail(request, pk):
     informetf = get_object_or_404(Informe_TF, pk=pk)
     return render(request, 'informetf_detail.html', {'informetf': informetf})
 
 
+@login_required(login_url='usuarios:login')
+@permission_required('proyectotf.add_informe_tf',
+raise_exception=True)
 def informetf_create(request):
     if request.method == 'POST':
         form = Informe_TF_Form(request.POST, request.FILES)
@@ -122,6 +166,9 @@ def informetf_create(request):
 
 
 
+@login_required(login_url='usuarios:login')
+@permission_required('proyectotf.change_informe_tf',
+raise_exception=True)
 def informetf_edit(request, pk):
     informetf = get_object_or_404(Informe_TF, pk=pk)
     if request.method == 'POST':
@@ -139,6 +186,10 @@ def informetf_edit(request, pk):
     return render(request, 'informetf_edit.html', {'form': form, 'informetf': informetf})
 
 
+
+@login_required(login_url='usuarios:login')
+@permission_required('proyectotf.delete_informe_tf',
+raise_exception=True)
 def informetf_delete(request, pk):
     informetf = get_object_or_404(Informe_TF, pk=pk)
     if request.method == 'POST':

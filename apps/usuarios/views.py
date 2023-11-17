@@ -24,14 +24,14 @@ def login_view(request):
     # Check if authentication successful
     if user is not None:
       login(request, user)
-      return HttpResponseRedirect(reverse("comision:tribunal_list"))
+      return HttpResponseRedirect(reverse("usuarios:usuario"))
     else:
       return render(request, "login.html", {
         "message": "Invalid email and/or password."
       })
   else:
     if request.user.is_authenticated:
-      return HttpResponseRedirect(reverse("comision:tribunal_list"))
+      return HttpResponseRedirect(reverse("usuarios:usuario"))
 
     return render(request, "login.html")
 
@@ -39,6 +39,9 @@ def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse("usuarios:login"))
 
+
+
+"""
 
 def register(request):
   if request.method == "POST":
@@ -66,4 +69,7 @@ def register(request):
     return HttpResponseRedirect(reverse("usuarios:login"))
   else:
     return render(request, "register.html")
+
+"""
+
 

@@ -35,6 +35,9 @@ class Proyecto_TF_Alumno(models.Model):
                                     blank=True)
     alumno = models.ForeignKey('persona.Alumno', related_name='proyecto_tf', on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f"{self.alumno.nombre_completo}"
+
 
 class Informe_TF(models.Model):
     estado_op = (

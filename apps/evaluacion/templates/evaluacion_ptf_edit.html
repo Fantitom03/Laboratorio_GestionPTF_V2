@@ -1,19 +1,16 @@
 {% extends 'base/base_sb.html' %}
 {% load static %}
-{% block titulo %}Editar Evaluacion PTF{% endblock %}
-{% block titulo_barra %}Editar Evaluacion PTF{% endblock %}
+{% block titulo %}Editar Evaluacion{% endblock %}
+{% block tituloBarra %}Editar Evaluacion{% endblock %}
 {% block contenido %}
 
 <br><br><br>
-<a class="btn btn-secondary" href="{% url 'evaluacion:evaluacion_ptf_list' evaluacion.proyecto_TF.id %}">VOLVER</a>
-<br><br>
-
-<form enctype="multipart/form-data" method="post" action="{% url 'evaluacion:evaluacion_ptf_edit' evaluacion.id %}" style="justify-content: center;width: 65%; margin-left: auto; margin-right: auto;">
+<form enctype="multipart/form-data" method="post" action="{% url 'evaluacion:evaluacion_ptf_edit' evaluacion.id %}" >
     {% csrf_token %}
     {{ form.as_p }}
-    <button class="btn btn-primary" type="submit">Guardar</button>
+    <button type="submit">Guardar</button>
 </form>
-
+<a href="{% url 'evaluacion:evaluacion_ptf_list' evaluacion.proyecto_TF.id %}">VOLVER</a>
 {% endblock %}
 
 {% block js %}

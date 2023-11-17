@@ -1,7 +1,7 @@
 {% extends "base/base.html" %}
 
 {% block contenido %}
-
+<br><br><br>
     <h2>Registro de Usuarios</h2>
 
     {% if message %}
@@ -13,14 +13,18 @@
         <div class="form-group">
             <input class="form-control" type="email" name="email" placeholder="Dirección de Mail">
         </div>
+			<br>
         <div class="form-group">
             <input class="form-control" type="password" name="password" placeholder="Password">
         </div>
+			<br>
         <div class="form-group">
             <input class="form-control" type="password" name="confirmation" placeholder="Confirmacón de Password">
         </div>
+			<br>
         <input class="btn btn-primary" type="submit" value="Registrar">
     </form>
+	<br>
 
     Ya tienes una cuenta? <a href="{% url 'usuarios:login' %}">Ingresar Aquí.</a>
 

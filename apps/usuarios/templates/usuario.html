@@ -2,7 +2,7 @@
 {% block titulo %}Inicio Sesión{% endblock %}
 {% block contenido %}
 <br><br><br>
-<h1>Bienvenido, {{ request.user.first_name }}</h1>
+<h1>Bienvenido, {{ request.user.email }}</h1>
 <ul>
 <li>Username: {{ request.user.username }}</li>
 <li>Email: {{ request.user.email }}</li>

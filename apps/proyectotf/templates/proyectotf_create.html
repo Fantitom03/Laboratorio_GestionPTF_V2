@@ -1,19 +1,15 @@
 {% extends "base/base_sb.html" %}
-{% block titulo %}Crear PTF{% endblock %}
-{% block titulo_barra %}Crear PTF{% endblock %}
-
+{% block titulo %}Crear proyectotf{% endblock %}
 {% block contenido %}
-
-  <br><br><br>
-  <a class="btn btn-secondary" href="{% url 'proyectotf:proyectotf_list' %}">VOLVER</a>
-  <br><br>
-
-
-  <form enctype="multipart/form-data" method="post" action="{% url 'proyectotf:proyectotf_create' %}" style="justify-content: center;width: 65%; margin-left: auto; margin-right: auto;">
+{% block tituloBarra %}Crear proyectotf{% endblock %}
+  <br>
+  <br>
+  <br>
+  <form enctype="multipart/form-data" method="post" action="{% url 'proyectotf:proyectotf_create' %}">
     {% csrf_token %}
     {{ form.as_p }}
-    <button class="btn btn-primary" type="submit">GUARDAR</button>
+    <button type="submit">GUARDAR</button>
   </form>
 
-
+	<a href="{% url 'proyectotf:proyectotf_list' %}">VOLVER</a>
 {% endblock %}

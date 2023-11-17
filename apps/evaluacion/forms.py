@@ -28,8 +28,8 @@ class EvaluacionPTF_Form(forms.ModelForm):
             'observaciones',
         ]
         labels = {
-            'evaluador':'Evaluador',
-            'proyecto_TF':'Proyecto TF',
+            'evaluador': 'Evaluador',
+            'proyecto_TF': 'Proyecto TF',
             'informe': 'Informe de Evaluacion',
             'fecha_evaluacion': 'Fecha de Evaluacion',
             'estado': 'Estado',
@@ -54,6 +54,7 @@ class EvaluacionITF_Form(forms.ModelForm):
     class Meta:
         model = EvaluacionITF
         fields = [
+            'evaluador',
             'informe_TF',
             'informe',
             'fecha_evaluacion',
@@ -61,11 +62,15 @@ class EvaluacionITF_Form(forms.ModelForm):
             'observaciones',
         ]
         labels = {
-            'informe_TF':'ITF',
-            'informe':'Informe de ITF',
+            'evaluador': 'Evaluador',
+            'informe_TF': 'ITF',
+            'informe': 'Informe de ITF',
             'fecha_evaluacion': 'Fecha de Evaluacion',
             'estado': 'Estado',
-            'observaciones':'Observaciones',
+            'observaciones': 'Observaciones',
+        }
+        widgets = {
+            'fecha_evaluacion': forms.DateInput(attrs={'type': 'date'}),
         }
         widgets = {
             'fecha_evaluacion': forms.DateInput(attrs={'type': 'date'}),

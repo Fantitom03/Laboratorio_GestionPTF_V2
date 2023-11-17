@@ -1,15 +1,12 @@
 {% extends "base/base_sb.html" %}
 {% block titulo %}Confirmar {% endblock %}
-{% block titulo_barra %}CONFIRMACION ELIMINAR EVALUACION ITF {% endblock %}
+{% block tituloBarra %}CONFIRMACION ELIMINAR EVALUACION {% endblock %}
 {% block contenido %}
-
-<br><br><br>
-
-<form method="post" style="justify-content: center;width: 65%; margin-left: auto; margin-right: auto;">
+<br><br>
+<br><br>
+<form method="post">
     {% csrf_token %}
-    <h1>¿Desea eliminar la Evaluación del ITF?</h1>
-    <br>
-    <a class="btn btn-secondary" href="{% url 'evaluacion:evaluacion_itf_list' evaluacion.informe_TF.id %}"> CANCELAR </a>
+    <p>¿Desea eliminar la evaluación?</p>
     <button type="submit" class="btn btn-danger"> CONFIRMAR </button>
 </form>
 

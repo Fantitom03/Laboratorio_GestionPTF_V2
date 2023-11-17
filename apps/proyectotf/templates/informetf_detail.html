@@ -1,13 +1,10 @@
 {% extends "base/base.html" %}
-{% block titulo %}Detalle ITF{% endblock %}
-{% block titulo_barra %}Detalle ITF{% endblock %}
-
+{% block titulo %}Detalle informetf{% endblock %}
+{% block tituloBarra %}Detalle informetf{% endblock %}
 {% block contenido %}
 
-    <br><br><br>
-    <a class="btn btn-secondary" href="{% url 'proyectotf:informetf_list' %}">VOLVER</a>
-    <br><br>
-
+    <br>
+    <br>
     <h1>INFORME_TF: {{ informetf.id }} </h1>
     <p><strong> Datos del Proyecto TF: </strong></p>
     <p>Alumno: {{ informetf.alumno }}</p>
@@ -21,9 +18,14 @@
     <form action="{% url 'proyectotf:informetf_delete' informetf.id %}" method="POST">
         {% csrf_token %}
         <input type="hidden" name="id_informetf" value="{{ informetf.id }}">
-        <input class="btn btn-danger" type="submit" value="Eliminar">
-        <a href="{% url 'proyectotf:informetf_edit' informetf.id %}" class="btn btn-primary">Editar</a>
-    </form>
 
+				{% if perms.proyectotf.delete_informe_tf and  perms.proyectotf.edit_informe_tf  %}
+        <input type="submit" value="Eliminar">
+        <a href="{% url 'proyectotf:informetf_edit' informetf.id %}" class="btn btn-primary">Editar</a>
+				{% endif %}
+    </form>
+    <br>
+    <br>
+    <a href="{% url 'proyectotf:informetf_list' %}">VOLVER</a>
 
 {% endblock %}
