@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from django.contrib import messages
 from .forms import Proyecto_TF_AlumnoForm, Proyecto_TF_Form, Informe_TF_Form
-from .models import Proyecto_TF_Alumno, Informe_TF
+from .models import Proyecto_TF_Alumno, Informe_TF, Proyecto_TF
 from django.contrib.auth import authenticate, login, logout
 
 
@@ -43,9 +43,23 @@ def proyectotf_miembros_create(request):
         form = Proyecto_TF_AlumnoForm()
     return render(request, 'proyectotf_miembros_create.html', {'form': form})
 
+def proyectotf_edit(request, pk):
+    proyectotf_relacion = get_object_or_404(Proyecto_TF_Alumno, pk=pk)
+    if request.method == 'POST':
+        form = Proyecto_TF_Form(request.POST, instance=proyectotf_relacion)
+        if form.is_valid():
+            proyectotf_editado = form.save(commit=True)
+            proyectotf = proyectotf_editado
+            proyectotf.save()
+            messages.success(request, 'Se ha actualizado correctamente el Proyecto_TF')
+            return redirect('proyectotf:proyectotf_detail', pk=proyectotf_relacion.pk)
+        else:
+            messages.error(request, 'Por favor, corrija los errores en el formulario.')
+    else:
+        form = Proyecto_TF_Form(instance=proyectotf_relacion)
+    return render(request, 'proyectotf_edit.html', {'form': form, 'proyectotf_relacion': proyectotf_relacion})
 
 
-# Vista para actualizar un proyectotf existente
 def proyectotf_miembro_edit(request, pk):
     proyectotf = get_object_or_404(Proyecto_TF_Alumno, pk=pk)
     if request.method == 'POST':
@@ -62,22 +76,7 @@ def proyectotf_miembro_edit(request, pk):
         form = Proyecto_TF_AlumnoForm(instance=proyectotf)
     return render(request, 'proyectotf_miembros_edit.html', {'form': form, 'proyectotf': proyectotf})
 
-def proyectotf_edit(request, pk):
-    proyectotf_relacion = get_object_or_404(Proyecto_TF_Alumno, pk=pk)
-    proyectotf = proyectotf_relacion.proyecto_tf.id
-    if request.method == 'POST':
-        form = Proyecto_TF_Form(request.POST, instance=proyectotf)
-        if form.is_valid():
-            proyectotf_editado = form.save(commit=True)
-            proyectotf = proyectotf_editado
-            proyectotf.save()
-            messages.success(request, 'Se ha actualizado correctamente el Proyecto_TF')
-            return redirect('proyectotf:proyectotf_detail', pk=proyectotf_relacion.pk)
-        else:
-            messages.error(request, 'Por favor, corrija los errores en el formulario.')
-    else:
-        form = Proyecto_TF_AlumnoForm(instance=proyectotf_relacion)
-    return render(request, 'proyectotf_edit.html', {'form': form, 'proyectotf_relacion': proyectotf_relacion})
+
 
 
 
