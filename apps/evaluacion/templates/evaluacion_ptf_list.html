@@ -3,16 +3,21 @@
 {% block titulo_barra %}Lista EvaluacionesPTF{% endblock %}
 
 {% block contenido %}
-    <h1>Evaluaciones del proyecto {{proyecto.titulo}}</h1>
+<br><br><br>
+    <h1>Evaluaciones del proyecto {{proyecto.titulo_ptf}}</h1>
+    <br><br>
+    <a href="{% url 'evaluacion:evaluacion_ptf_create' proyecto.id %}" class="btn btn-primary">Evaluar</a>
+    <br><br>
     <div id="resultados">
-        <table>
+        <table class="table table-bordered table-sm" style="justify-content: center;width: 65%; margin-left: auto; margin-right: auto;">
             <thead>
                 <tr>
-                    <th> Informe </th>
-                    <th> Evaluador </th>
-                    <th> Fecha Evaluacion </th>
-                    <th> Estado </th>
-                    <th> Observaciones </th>
+                    <th scope="col"> Informe </th>
+                    <th scope="col"> Evaluador </th>
+                    <th scope="col"> Fecha Evaluacion </th>
+                    <th scope="col"> Estado </th>
+                    <th scope="col"> Observaciones </th>
+                    <th scope="col"> Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -20,15 +25,19 @@
             {% for evaluacion in evaluaciones%}
                 <tr>
                     <td scope="row">{{evaluacion.informe}}</td>
-                    <td>{{evaluacion.}}</td>
-                    <td>{{}}</td>
-                    <td>{{}}</td>
-                    <td>{{}}</td>
+                    <td>{{evaluacion.evaluador}}</td>
+                    <td>{{evaluacion.fecha_evaluacion}}</td>
+                    <td>{{evaluacion.estado}}</td>
+                    <td>{{evaluacion.observaciones}}</td>
+                    <td>
+                        <a href="{% url 'evaluacion:evaluacion_ptf_edit' evaluacion.id %}" class="btn btn-secondary">Editar</a>
+                        <a href="{% url 'evaluacion:evaluacion_ptf_delete' evaluacion.id %}" class="btn btn-danger">Eliminar</a>
+                    </td>
                 </tr>
-            {% %}
+            {% endfor %}
             {% else %}
                 <h1>No hay evaluaciones disponibles</h1>
-            {% endfor %}
+            {% endif %}
             </tbody>
         </table>
     </div>
