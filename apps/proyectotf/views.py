@@ -4,7 +4,8 @@ from django.urls import reverse
 from django.contrib import messages
 from .forms import Proyecto_TF_AlumnoForm, Proyecto_TF_Form, Informe_TF_Form
 from .models import Proyecto_TF_Alumno, Informe_TF
-from apps.persona.models import Alumno
+from apps.persona.models import Alumno, Docente
+from apps.comision.models import Miembro_TE, TribunalEvaluador
 from django.contrib.auth.models import Permission
 from django.contrib.auth import authenticate, login, logout
 
@@ -14,6 +15,17 @@ from django.contrib.auth import authenticate, login, logout
 raise_exception=True)
 def proyectotf_list(request):
     proyectotfs = Proyecto_TF_Alumno.objects.all()
+    return render(request, 'proyectotf_list.html', {'proyectotfs': proyectotfs})
+
+
+@login_required(login_url='usuarios:login')
+@permission_required('proyectotf.view_proyectotf_te',
+raise_exception=True)
+def proyectotf_list_miembrote(request):
+    docente = get_object_or_404(Docente, cuil=request.user.username)
+    miembrote = get_object_or_404(Miembro_TE, docente=docente)
+    tribunal = get_object_or_404(TribunalEvaluador, miembros=miembrote)
+    proyectotfs = Proyecto_TF_Alumno.objects.filter(proyecto_tf__te_asignado=tribunal)
     return render(request, 'proyectotf_list.html', {'proyectotfs': proyectotfs})
 
 

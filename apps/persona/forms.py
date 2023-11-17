@@ -126,17 +126,21 @@ class AsesorForm(forms.ModelForm):
 class DocenteForm(forms.ModelForm):
     class Meta:
         model = Docente
-        fields = [
+        fields = (
             'dni',
-            'cuil',
             'nombre',
             'apellido',
-        ]
+            'cuil',
+            'correo_electronico',
+            'crear_usuario',
+        )
         labels = {
-            'dni' : 'DNI',
-            'cuil' : 'CUIL',
-            'nombre' : 'Nombre',
-            'apellido' : 'Apellido',
+            'dni': 'DNI',
+            'nombre': 'Nombre',
+            'apellido': 'Apellido',
+            'cuil': 'Cuil',
+            'correo_electronico': 'Correo Electrónico',
+            'crear_usuario': 'Crear Usuario',
         }
 
     def clean_dni(self):
@@ -174,3 +178,12 @@ class DocenteForm(forms.ModelForm):
             raise ValidationError("El CUIL debe contener solo números.")
 
         return cuil
+
+    def clean_crear_usuario(self):
+        crear_usuario = self.cleaned_data['crear_usuario']
+
+        # Verifica que el campo crear_usuario sea un booleano
+        if not isinstance(crear_usuario, bool):
+            raise ValidationError("El campo crear_usuario debe ser un booleano.")
+
+        return crear_usuario

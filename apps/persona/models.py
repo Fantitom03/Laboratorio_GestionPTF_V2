@@ -21,6 +21,28 @@ class Persona (models.Model):
 
 class Docente (Persona):
     cuil = models.CharField(max_length=11, unique=True, blank=False)
+    correo_electronico = models.EmailField(max_length=254, blank=False, null=True)
+    crear_usuario = models.BooleanField(default=True)
+
+
+@receiver(post_save, sender=Docente)
+def crear_usuario_docente(sender, instance, created, **kwargs):
+    # Verifica la condición crear_usuario
+    if created:
+        username = instance.cuil
+        password = User.objects.make_random_password()
+        user = User.objects.create_user(username=username, password=password)
+        user.email = instance.correo_electronico
+        user.save()
+
+        # Envía el correo electrónico con las credenciales
+        send_mail(
+            'Datos del usuario',
+            f'Nombre de usuario: {username}\nContraseña: {password}',
+            'sistemadeseguimientoPTF@gmail.com',  # Reemplaza con tu dirección de correo
+            [instance.correo_electronico],
+            fail_silently=True,
+        )
 
 class Alumno (Persona):
     matricula = models.CharField(max_length=5, unique=True, blank=False)
