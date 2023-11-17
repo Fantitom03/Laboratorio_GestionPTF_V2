@@ -138,7 +138,6 @@ raise_exception=True)
 def miembro_te_delete(request, pk):
     miembrote = get_object_or_404(Miembro_TE, pk=pk)
     if request.method == 'POST':
-        print('SISELIMINO')
         miembrote.delete()
         messages.success(request, 'Se ha eliminado exitosamente el miembro del tribunal evaluador')
         return redirect('comision:tribunal_list')
