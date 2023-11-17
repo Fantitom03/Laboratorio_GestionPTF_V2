@@ -5,5 +5,5 @@ app_name = 'evaluacion'
 
 ulrpatterns = [
     #EvaluacionPTF views
-    path('evaluacion_ptf/<int:pk>', views.evaluacion_ptf_list, name='evaluacion_ptf_list'),
+    path ('evaluacion_ptf/<int:pk>', views.evaluacion_ptf_list, name='evaluacion_ptf_list'),
 ]

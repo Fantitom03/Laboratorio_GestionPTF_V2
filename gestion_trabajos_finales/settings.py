@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'apps.proyectotf',
     'apps.evaluacion',
     'apps.comision',
+    'apps.usuarios'
 ]
 
 MIDDLEWARE = [
