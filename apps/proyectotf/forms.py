@@ -36,3 +36,5 @@ class Proyecto_TF_Form(forms.ModelForm):
 
         return fecha_presentacion
 
+class Informe_TF_Form(forms.ModelForm):
+    pass
