@@ -1,0 +1,16 @@
+{% extends 'base/base.html' %}
+{% block titulo %}Nueva Evaluación ITF{% endblock %}
+{% block titulo_barra %}Nueva Evaluación ITF{% endblock %}
+
+{% block contenido %}
+
+    <br><br><br>
+        <a href="{% url 'evaluacion:evaluacion_itf_list' informe.id %}" class="btn btn-secondary">Volver</a>
+    <br><br>
+    <form method="post" enctype="multipart/form-data" action="{% url 'evaluacion:evaluacion_itf_create' informe.id %}" style="justify-content: center;width: 65%; margin-left: auto; margin-right: auto;">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+
+{% endblock %}

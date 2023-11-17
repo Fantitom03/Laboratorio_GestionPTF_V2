@@ -1,0 +1,45 @@
+{% extends 'base/base.html' %}
+{% block titulo %}Lista EvaluacionesITF{% endblock %}
+{% block titulo_barra %}Lista EvaluacionesITF{% endblock %}
+
+{% block contenido %}
+<br><br><br>
+    <h1>Evaluaciones del informe {{informe.proyecto_tf.titulo_ptf}}</h1>
+    <br><br>
+    <a href="{% url 'evaluacion:evaluacion_itf_create' informe.id %}" class="btn btn-primary">Evaluar</a>
+    <br><br>
+    <div id="resultados">
+        <table class="table table-bordered table-sm" style="justify-content: center;width: 65%; margin-left: auto; margin-right: auto;">
+            <thead>
+                <tr>
+                    <th scope="col"> Informe </th>
+                    <th scope="col"> Evaluador </th>
+                    <th scope="col"> Fecha Evaluacion </th>
+                    <th scope="col"> Estado </th>
+                    <th scope="col"> Observaciones </th>
+                    <th scope="col"> Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% if evaluaciones %}
+            {% for evaluacion in evaluaciones%}
+                <tr>
+                    <td scope="row">{{evaluacion.informe}}</td>
+                    <td>{{evaluacion.evaluador}}</td>
+                    <td>{{evaluacion.fecha_evaluacion}}</td>
+                    <td>{{evaluacion.estado}}</td>
+                    <td>{{evaluacion.observaciones}}</td>
+                    <td>
+                        <a href="{% url 'evaluacion:evaluacion_itf_edit' evaluacion.id %}" class="btn btn-secondary">Editar</a>
+                        <a href="{% url 'evaluacion:evaluacion_itf_delete' evaluacion.id %}" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            {% else %}
+                <h1>No hay evaluaciones disponibles</h1>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}
