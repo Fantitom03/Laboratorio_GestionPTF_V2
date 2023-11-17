@@ -1,0 +1,43 @@
+{% extends "base/base.html" %}
+{% block titulo %}Listado Informetf{% endblock %}
+{% block tituloBarra %}Listado proyectotf{% endblock %}
+{% block contenido %}
+
+    <br>
+    <br>
+    <br>
+		<a href="{% url 'proyectotf:informetf_create' %}" class="btn btn-primary">AGREGAR ITF</a>
+
+    <div id="resultados">
+        <table class="table table-bordered table-sm" style="justify-content: center;width: 65%; margin-left: auto; margin-right: auto;">
+            <thead>
+                <tr>
+										<th scope="col">ID</th>
+                    <th scope="col">Alumno</th>
+                    <th scope="col">Proyecto TF</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Observaciones</th>
+
+                </tr>
+            </thead>
+            <tbody>
+            {% if informetfs %}
+                {% for informe in informetfs %}
+                    <tr>
+                        <td scope="row"><a href="{% url 'proyectotf:informetf_detail' informe.id %}">{{ informe.id }}</a></td>
+                        <td>{{ informe.alumno }}</td>
+                        <td>{{ informe.proyecto_tf.titulo_ptf }}</td>
+                        <td>{{ informe.estado }}</td>
+                        <td>{{ informe.observaciones }}</td>
+
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <h1>No hay proyectos cargados</h1>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+
+{% endblock %}
