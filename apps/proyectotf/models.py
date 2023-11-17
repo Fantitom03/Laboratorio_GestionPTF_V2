@@ -25,6 +25,9 @@ class Proyecto_TF(models.Model):
     cstf = models.ForeignKey(Miembro_CSTF, on_delete=models.CASCADE)
     te_asignado = models.ForeignKey(TribunalEvaluador, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f"{self.titulo_ptf}"
+
 
 
 class Proyecto_TF_Alumno(models.Model):
