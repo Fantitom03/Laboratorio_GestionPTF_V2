@@ -31,8 +31,13 @@
                     <td>{{ miembrote.docente.apellido }}</td>
                     <td>{{ miembrote.get_rol_display }}</td>
                     <td>{{ miembrote.fecha_alta }}</td>
-                    <td><a href="{% url 'comision:miembrote_edit' miembrote.id%}" class="btn btn-primary">Editar</a>
-                        <a href="{% url 'comision:miembrote_delete' miembrote.id %}" class="btn btn-danger">Eliminar</a>
+                    <td>
+                        <form method="post" action="{% url 'comision:miembrote_delete' miembrote.id tpk=tribunal.id %}" >
+                            {% csrf_token %}
+                            <input type="hidden" value="{{ tribunal.id }}" name="tribunal">
+                            <input type="submit" value="Eliminar" class="btn btn-danger" >
+                            <a href="{% url 'comision:miembrote_edit' miembrote.id%}" class="btn btn-primary">Editar</a>
+                        </form>
                     </td>
                 </tr>
             {% endfor %}

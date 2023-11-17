@@ -8,6 +8,7 @@
 	{% csrf_token %}
 	<p>Desea eliminar el miembro?</p>
 	<button type="submit" class="btn btn-danger"> CONFIRMAR </button>
+	<a href="{% url 'persona:tribunal_detail' tribunal.id %}" class="btn btn-primary">Cancelar</a>
 </form>
 
 

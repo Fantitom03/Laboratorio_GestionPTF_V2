@@ -107,27 +107,15 @@ def miembro_te_edit(request, pk):
     return render(request, 'miembrote_edit.html', {'miembrote': miembrote, 'form': form })
 
 
-
-
-
 # Vista para eliminar un miembro de TribunalEvaluador existente
-def miembro_te_delete(request, pk):
+def miembro_te_delete(request, pk, tpk):
     miembrote = get_object_or_404(Miembro_TE, pk=pk)
+    tribunal = get_object_or_404(TribunalEvaluador, pk=tpk)
     if request.method == 'POST':
-        print('SISELIMINO')
         miembrote.delete()
         messages.success(request, 'Se ha eliminado exitosamente el miembro del tribunal evaluador')
-        return redirect('comision:tribunal_list')
-    return render(request, 'miembro_confirm_delete.html', {'miembrote': miembrote})
-
-
-
-#
-#
-#
-#
-#
-
+        return redirect('comision:tribunal_detail', pk=tpk)
+    return render(request, 'miembro_confirm_delete.html', {'miembrote': miembrote, 'tribunal': tribunal})
 
 
 def tribunal_create(request):
@@ -140,8 +128,6 @@ def tribunal_create(request):
     else:
         form = TribunalEvaluadorForm()
     return render(request, 'tribunal_create.html', {'form': form})
-
-
 
 
 def tribunal_list(request):
