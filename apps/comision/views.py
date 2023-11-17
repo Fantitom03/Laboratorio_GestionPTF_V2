@@ -1,3 +1,4 @@
+from django.db import connection
 from django.forms import modelformset_factory
 from django.shortcuts import render, redirect, get_object_or_404, redirect
 from django.urls import reverse
@@ -91,27 +92,34 @@ def miembro_te_create(request, pk):
 # Vista para actualizar un miembro de TribunalEvaluador existente
 def miembro_te_edit(request, pk):
     miembrote = get_object_or_404(Miembro_TE, pk=pk)
+
     if request.method == 'POST':
-        form = Miembro_TE_Form(request.POST, instance=miembrote)
+        form = Miembro_TE_Form(request.POST, request.FILES, instance=miembrote)
         if form.is_valid():
-            form.save()
-            return redirect(reverse('comision:tribunal_detail'))
+            miembrote_editado = form.save()
+            miembrote = miembrote_editado
+            miembrote.save()
+            return redirect('comision:tribunal_list')
         else:
             messages.error(request, 'Por favor, corrija los errores en el formulario.')
     else:
         form = Miembro_TE_Form(instance=miembrote)
-    return render(request,'comision:miembrote_edit', {'form': form, 'miembrote': miembrote})
+    return render(request, 'miembrote_edit.html', {'miembrote': miembrote, 'form': form })
+
+
+
+
 
 # Vista para eliminar un miembro de TribunalEvaluador existente
-def miembro_te_delete(request, pk, tribunal):
+def miembro_te_delete(request, pk):
+    miembrote = get_object_or_404(Miembro_TE, pk=pk)
     if request.method == 'POST':
-        if 'id_miembrote' in request.POST:
-            miembrote = get_object_or_404(Miembro_TE, pk=pk)
-            miembrote.delete()
-            messages.success(request, 'Se ha eliminado exitosamente el miembro del tribunal evaluador')
-        else:
-            messages.error(request, 'Debe indicar qué miembro del tribunal evaluador desea eliminar')
-    return redirect('comision:tribunal_detail', tpk=tribunal)
+        print('SISELIMINO')
+        miembrote.delete()
+        messages.success(request, 'Se ha eliminado exitosamente el miembro del tribunal evaluador')
+        return redirect('comision:tribunal_list')
+    return render(request, 'miembro_confirm_delete.html', {'miembrote': miembrote})
+
 
 
 #
@@ -158,7 +166,7 @@ def tribunal_edit(request, pk):
             return redirect('comision:tribunal_detail', pk=tribunal.pk)
     else:
         form = TribunalEvaluadorForm(instance=tribunal)
-    return render(request, 'tribunal_edit.html', {'form': form, 'tribunal':tribunal})
+    return render(request, 'tribunal_edit.html', {'form': form, 'tribunal': tribunal})
 
 
 def tribunal_delete(request, pk):
