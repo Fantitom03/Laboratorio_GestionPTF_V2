@@ -2,6 +2,18 @@ from django import forms
 from django.core.exceptions import ValidationError
 from .models import Docente, Alumno, Asesor
 
+class CustomForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(CustomForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            # Agregar una clase CSS a cada campo del formulario
+            field.widget.attrs['class'] = 'form-control'
+
+    def add_error(self, field, error):
+        # Personalizar el mensaje de error agregando una clase CSS
+        super().add_error(field, error)
+        self.fields[field].widget.attrs.update({'class': 'form-control is-invalid'})
+
 class AlumnoForm(forms.ModelForm):
     class Meta:
         model = Alumno

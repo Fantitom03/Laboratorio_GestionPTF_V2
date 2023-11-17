@@ -4,6 +4,18 @@ from .models import Miembro_CSTF, Miembro_TE, TribunalEvaluador
 from apps.persona.models import Docente
 from datetime import date
 
+class CustomForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(CustomForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            # Agregar una clase CSS a cada campo del formulario
+            field.widget.attrs['class'] = 'form-control'
+
+    def add_error(self, field, error):
+        # Personalizar el mensaje de error agregando una clase CSS
+        super().add_error(field, error)
+        self.fields[field].widget.attrs.update({'class': 'form-control is-invalid'})
+
 class Miembro_CSTF_Form(forms.ModelForm):
     class Meta:
         model = Miembro_CSTF
