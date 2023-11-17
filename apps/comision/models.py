@@ -9,6 +9,9 @@ class Miembro_CSTF (models.Model):
     resolucion_asignacion = models.IntegerField(unique=True)
     fecha_alta = models.DateField()
 
+    def __str__(self):
+        return f"{self.docente.nombre_completo}"
+
 
 
 class Miembro_TE (models.Model):
@@ -22,11 +25,14 @@ class Miembro_TE (models.Model):
     fecha_alta = models.DateField()
 
     def __str__(self):
-        return f"{self.docente}"
+        return f"{self.docente.nombre_completo}"
 
 class TribunalEvaluador (models.Model):
     numero_disposicion = models.IntegerField()
     fecha_disposicion = models.DateField()
     archivo_disposicion = models.FileField(null=True)
     miembros = models.ManyToManyField(Miembro_TE)
+
+    def __str__(self):
+        return f"{self.numero_disposicion}"
 

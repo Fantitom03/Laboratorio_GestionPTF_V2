@@ -30,7 +30,7 @@ class Proyecto_TF(models.Model):
 class Proyecto_TF_Alumno(models.Model):
     proyecto_tf = models.ForeignKey(Proyecto_TF, related_name='alumnos', on_delete=models.CASCADE, null=True,
                                     blank=True)
-    alumno = models.ForeignKey('persona.Alumno', related_name='proyectos_tf', on_delete=models.CASCADE)
+    alumno = models.ForeignKey('persona.Alumno', related_name='proyecto_tf', on_delete=models.CASCADE)
 
 
 class Informe_TF(models.Model):
@@ -42,10 +42,9 @@ class Informe_TF(models.Model):
 
     alumno = models.ForeignKey('persona.Alumno', related_name='informe_tf', on_delete=models.CASCADE)
     archivo_itf = models.FileField(upload_to='archivos_itf/', null=True)
-    proyecto_tf = models.ForeignKey(Proyecto_TF, related_name='informes_tf', on_delete=models.CASCADE)
+    proyecto_tf = models.ForeignKey(Proyecto_TF, related_name='informe_tf', on_delete=models.CASCADE)
     estado = models.CharField(max_length=20, choices=estado_op)
     observaciones = models.CharField(max_length=500, null=True)
-
 
 
 """

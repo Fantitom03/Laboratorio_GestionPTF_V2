@@ -1,5 +1,5 @@
 from django import forms
-from .models import Proyecto_TF, Proyecto_TF_Alumno
+from .models import Proyecto_TF, Proyecto_TF_Alumno, Informe_TF
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from datetime import datetime
@@ -23,3 +23,9 @@ class Proyecto_TF_Form(forms.ModelForm):
 
         return fecha_presentacion
 
+
+
+class Informe_TF_Form(forms.ModelForm):
+    class Meta:
+        model = Informe_TF
+        fields = ('archivo_itf', 'proyecto_tf', 'estado', 'observaciones')
