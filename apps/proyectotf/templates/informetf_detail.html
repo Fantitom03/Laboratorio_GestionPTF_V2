@@ -3,8 +3,9 @@
 {% block tituloBarra %}Detalle informetf{% endblock %}
 {% block contenido %}
 
-    <br>
-    <br>
+    <br><br><br>
+    <a class="btn btn-secondary" href="{% url 'proyectotf:informetf_list' %}">VOLVER</a>
+    <br><br>
     <h1>INFORME_TF: {{ informetf.id }} </h1>
     <p><strong> Datos del Proyecto TF: </strong></p>
     <p>Alumno: {{ informetf.alumno }}</p>
@@ -21,8 +22,6 @@
         <input type="submit" value="Eliminar">
         <a href="{% url 'proyectotf:informetf_edit' informetf.id %}" class="btn btn-primary">Editar</a>
     </form>
-    <br>
-    <br>
-    <a href="{% url 'proyectotf:informetf_list' %}">VOLVER</a>
+
 
 {% endblock %}

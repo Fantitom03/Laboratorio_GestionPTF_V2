@@ -1,18 +1,19 @@
 {% extends "base/base_sb.html" %}
 {% block titulo %}Editar MiembroCSTF{% endblock %}
-{% block tituloBarra %}Editar MiembroCSTF{% endblock %}
+{% block titulo_barra %}Editar MiembroCSTF{% endblock %}
 {% block contenido %}
 
-    <br>
-    <br>
-    <br>
+    <br><br><br>
+    <a class="btn btn-secondary" href="{% url 'comision:cstf_list' %}">VOLVER</a>
+    <br><br>
+
     <form method="post" action="{% url 'comision:cstf_edit' miembrocstf.id %}">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Guardar</button>
+        <button class="btn btn-primary" type="submit">Guardar</button>
     </form>
 
-    <a href="{% url 'comision:cstf_list' %}">VOLVER</a>
+
 
 
 {% endblock %}

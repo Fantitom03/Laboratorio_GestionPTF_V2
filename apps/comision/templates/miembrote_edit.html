@@ -1,16 +1,16 @@
 {% extends "base/base_sb.html" %}
 {% block titulo %}Editar Miembro Tribunal Evaluador{% endblock %}
-{% block tituloBarra %}Editar Miembro Tribunal Evaluador{% endblock %}
+{% block titulo_barra %}Editar Miembro Tribunal Evaluador{% endblock %}
 {% block contenido %}
 
 <br><br><br>
+<a href="{% url 'comision:tribunal_list' %}" class="btn btn-secondary">Volver al Listado</a>
+<br><br>
 
 <form method="post" action="{% url 'comision:miembrote_edit' miembrote.id %}">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Guardar</button>
+    <button type="submit" class="btn btn-primary">Guardar</button>
 </form>
-{% if tribunal  %}
-<a href="{% url 'comision:tribunal_detail' tribunal.id %}" class="btn btn-primary">Volver</a>
-{% endif %}
+
 {% endblock %}

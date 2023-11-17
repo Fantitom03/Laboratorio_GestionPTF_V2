@@ -1,10 +1,9 @@
 {% extends "base/base.html" %}
 {% block titulo %}Detalle Miembro Tribunal Evaluador{% endblock %}
-{% block tituloBarra %}Detalle Miembro Tribunal Evaluador{% endblock %}
+{% block titulo_barra %}Detalle Miembro Tribunal Evaluador{% endblock %}
 {% block contenido %}
 
-    <br>
-    <br>
+    <br><br><br>
     <h1>Miembro Tribunal Evaluador: {{ miembrote.docente.nombre }} {{ miembrote.docente.apellido }}</h1>
     <p><strong> Datos del Miembro Tribunal Evaluador: </strong></p>
     <p>Nombre: {{ miembrote.docente.nombre }}</p>
@@ -13,7 +12,7 @@
     <p>CUIL: {{ miembrote.docente.cuil }}</p>
     <p>Rol: {{ miembrote.get_rol_display }}</p>
     <p>Fecha de Alta: {{ miembrote.fecha_alta }}</p>
-
+    <br><br>
     <form action="{% url 'comision:miembrote_delete' miembrote.id %}" method="POST">
         {% csrf_token %}
         <input type="hidden" name="id_miembrote" value="{{ miembrote.id }}">
@@ -22,6 +21,6 @@
     </form>
     <br>
     <br>
-    <a href="{% url 'comision:tribunal_detail' tribunales.id%}">VOLVER</a>
+    <a class="btn btn-secondary" href="{% url 'comision:tribunal_detail' tribunales.id%}">VOLVER</a>
 
 {% endblock %}
