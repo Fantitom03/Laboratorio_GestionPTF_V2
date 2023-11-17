@@ -128,6 +128,16 @@ def alumno_ptf(request):
     proyecto = get_object_or_404(Proyecto_TF_Alumno, alumno=alumno)
     return redirect('proyectotf:proyectotf_detail', pk=proyecto.pk)
 
+
+@login_required(login_url='usuarios:login')
+@permission_required('proyectotf.detail_informe_tf',
+raise_exception=True)
+def alumno_itf(request):
+    alumno = get_object_or_404(Alumno, dni=request.user.username)
+    proyecto = get_object_or_404(Informe_TF, alumno=alumno)
+    #informe = get_object_or_404(Informe_TF, proyecto_tf=proyecto)
+    return redirect('proyectotf:informetf_detail', pk=proyecto.pk)
+
 #
 #
 #

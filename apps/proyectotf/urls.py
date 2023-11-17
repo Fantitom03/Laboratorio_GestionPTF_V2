@@ -18,5 +18,6 @@ urlpatterns = [
     path('itf_delete/<int:pk>/', views.informetf_delete, name='informetf_delete'),
     path('itf_edit/<int:pk>/', views.informetf_edit, name='informetf_edit'),
 
-    path('alumno_ptf', views.alumno_ptf, name='alumno_ptf')
+    path('alumno_ptf', views.alumno_ptf, name='alumno_ptf'),
+    path('alumno_itf', views.alumno_itf, name='alumno_itf')
 ]

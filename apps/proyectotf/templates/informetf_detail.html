@@ -26,6 +26,12 @@
     </form>
     <br>
     <br>
+		{% if perms.proyectotf.delete_informe_tf and  perms.proyectotf.edit_informe_tf  %}
     <a href="{% url 'proyectotf:informetf_list' %}">VOLVER</a>
+		{% else %}
+		<a href="{% url 'usuarios:usuario' %}">VOLVER</a>
+		{% endif %}
+
+
 
 {% endblock %}

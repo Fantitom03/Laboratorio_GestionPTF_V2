@@ -49,6 +49,12 @@
                             </li>
 														{% endif %}
 
+														{% if perms.proyectotf.detail_informe_tf %}
+														<li class="nav-item">
+                              <a class="nav-link active" aria-current="page" href="{% url 'proyectotf:alumno_itf'  %}" style="color: whitesmoke;">VER ITF</a>
+                            </li>
+														{% endif %}
+
 
 
                           </ul>

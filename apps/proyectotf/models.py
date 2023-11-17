@@ -39,6 +39,7 @@ class Proyecto_TF_Alumno(models.Model):
         return f"{self.alumno.nombre_completo}"
 
 
+
 class Informe_TF(models.Model):
     estado_op = (
         ('aprobado', 'Aprobado'),
