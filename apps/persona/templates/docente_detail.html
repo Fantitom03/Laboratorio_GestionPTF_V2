@@ -1,0 +1,22 @@
+{% extends "base/base.html" %}
+{% block titulo %}Detalle Docentes{% endblock %}
+{% block titulo_barra %}Detalle Docentes{% endblock %}
+
+{% block contenido %}
+
+    <br><br><br>
+     <a href="{% url 'persona:docente_list'%}" class="btn btn-secondary">Volver</a>
+    <br><br>
+
+    <h1>Docente: {{ docente.nombre }} {{ docente.apellido }}</h1>
+    <p><strong> Datos del asesor: </strong></p>
+    <p>CUIL: {{ docente.cuil }}</p>
+    <p>Nombre: {{ docente.nombre }}</p>
+    <p>Apellido: {{ docente.apellido }}</p>
+    <p>DNI: {{ docente.dni }}</p>
+
+
+    <a href="{% url 'persona:docente_delete' docente.id %}" class="btn btn-danger">Eliminar</a>
+    <a href="{% url 'persona:docente_edit' docente.id %}" class="btn btn-primary">Editar</a>
+
+{% endblock %}

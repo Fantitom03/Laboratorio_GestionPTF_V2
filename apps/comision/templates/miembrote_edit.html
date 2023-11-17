@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block titulo %}Editar Miembro Tribunal Evaluador{% endblock %}
+{% block tituloBarra %}Editar Miembro Tribunal Evaluador{% endblock %}
+{% block contenido %}
+
+<br><br><br>
+<form method="post" action="{% url 'comision:miembrote_edit' miembrote.id %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar</button>
+</form>
+<a href="{% url 'comision:tribunal_detail' tribunal.id %}">VOLVER</a>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block titulo %}Detalle MiembroCSTF{% endblock %}
+{% block tituloBarra %}Detalle MiembroCSTF{% endblock %}
+{% block contenido %}
+
+    <br>
+    <br>
+    <h1>Miembro CSTF: {{ miembrocstf.docente.nombre }} {{ miembrocstf.docente.apellido }}</h1>
+    <p><strong> Datos del Miembro CSTF: </strong></p>
+    <p>Nombre: {{ miembrocstf.docente.nombre }}</p>
+    <p>Apellido: {{ miembrocstf.docente.apellido }}</p>
+    <p>DNI: {{ miembrocstf.docente.dni }}</p>
+    <p>CUIL: {{ miembrocstf.docente.cuil }}</p>
+    <p>N° de Resolución: {{ miembrocstf.resolucion_asignacion }}</p>
+    <p>Fecha de Alta: {{ miembrocstf.fecha_alta }}</p>
+
+
+    <form action="{% url 'comision:cstf_delete' miembrocstf.id %}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="id_miembrocstf" value="{{ miembrocstf.id }}">
+        <input type="submit" value="Eliminar">
+        <a href="{% url 'comision:cstf_edit' miembrocstf.id %}" class="btn btn-primary">Editar</a>
+    </form>
+    <br>
+    <br>
+    <a href="{% url 'comision:cstf_list' %}">VOLVER</a>
+
+{% endblock %}

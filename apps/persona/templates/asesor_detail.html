@@ -1,0 +1,21 @@
+{% extends "base/base.html" %}
+{% block titulo %}Detalle Asesores{% endblock %}
+{% block titulo_barra %}Detalle Asesores{% endblock %}
+
+{% block contenido %}
+
+    <br><br><br>
+     <a href="{% url 'persona:asesor_list'%}" class="btn btn-secondary">Volver</a>
+    <br><br>
+
+    <h1>Asesor: {{ asesor.nombre }} {{ asesor.apellido }}</h1>
+    <p><strong> Datos del asesor: </strong></p>
+    <p>Nombre: {{ asesor.nombre }}</p>
+    <p>Apellido: {{ asesor.apellido }}</p>
+    <p>DNI: {{ asesor.dni }}</p>
+    <p>CURRICULUM: {{ asesor.curriculum }}</p>
+
+    <a href="{% url 'persona:asesor_delete' asesor.id %}" class="btn btn-danger">Eliminar</a>
+    <a href="{% url 'persona:asesor_edit' asesor.id %}" class="btn btn-primary">Editar</a>
+
+{% endblock %}

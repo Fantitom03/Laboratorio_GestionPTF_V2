@@ -1,13 +1,25 @@
 from django.urls import path
-from apps.comision.views import MiembrosTE_List, MiembrosTE_Create, MiembrosTE_Detail, MiembrosTE_Eliminar, MiembrosTE_Editar
+from . import views
 
 app_name = 'comision'
 
 urlpatterns = [
-    path('listarte/', MiembrosTE_List.as_view(), name='miembroTE_list'),
-    path('miembrote/nuevo/', MiembrosTE_Create.as_view(), name='miembroTE_crear'),
-    path('miembrote/<int:pk>/', MiembrosTE_Detail.as_view(), name='miembroTE_detalle'),
-    path('miembrote_delete/<int:pk>/', MiembrosTE_Eliminar.as_view(), name='miembroTE_eliminar'),
-    path('miembrote_edit/<int:pk>/', MiembrosTE_Editar.as_view(), name='miembroTE_editar'),
+    # URLs para MiembroCSTF
+    path('cstf/', views.miembrocstf_list, name='cstf_list'),
+    path('cstf/nuevo/', views.miembrocstf_create, name='cstf_create'),
+    path('cstf/<int:pk>/', views.miembrocstf_detail, name='cstf_detail'),
+    path('cstf_delete/<int:pk>/', views.miembrocstf_delete, name='cstf_delete'),
+    path('cstf_edit/<int:pk>/', views.miembrocstf_edit, name='cstf_edit'),
 
+    # URLs para MiembrosTE
+    path('miembrote/nuevo/<int:pk>', views.miembro_te_create, name='miembrote_create'),
+    path('miembrote_delete/<int:pk>/', views.miembro_te_delete, name='miembrote_delete'),
+    path('miembrote_edit/<int:pk>/', views.miembro_te_edit, name='miembrote_edit'),
+
+    # URLs para TribunalEvaluador
+    path('tribunal/', views.tribunal_list, name='tribunal_list'),
+    path('tribunal/nuevo/', views.tribunal_create, name='tribunal_create'),
+    path('tribunal/<int:pk>/', views.tribunal_detail, name='tribunal_detail'),
+    path('tribunal_delete/<int:pk>/', views.tribunal_delete, name='tribunal_delete'),
+    path('tribunal_edit/<int:pk>/', views.tribunal_edit, name='tribunal_edit'),
 ]
