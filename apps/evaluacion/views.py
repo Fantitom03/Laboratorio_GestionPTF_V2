@@ -1,12 +1,15 @@
 from django.contrib.auth.decorators import login_required, permission_required
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from .forms import EvaluacionPTF_Form, EvaluacionITF_Form, Defensa_Form
-from apps.proyectotf.forms import Proyecto_TF_Form
+from apps.proyectotf.forms import Proyecto_TF_Form, Proyecto_TF_AlumnoForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
 from .models import EvaluacionITF, EvaluacionPTF, Defensa, Proyecto_TF, Informe_TF
 from .forms import EvaluacionITF_Form, EvaluacionPTF_Form, Defensa_Form
+from ..comision.models import Miembro_TE, TribunalEvaluador
+from ..persona.models import Docente
+from ..proyectotf.models import Proyecto_TF_Alumno
 
 
 @login_required(login_url='usuarios:login')
@@ -66,6 +69,35 @@ def evaluacion_ptf_delete (request, pk):
         evaluacion.delete()
         return redirect('evaluacion:evaluacion_ptf_list', evaluacion.proyecto_TF.id)
     return render(request, 'evaluacion_ptf_confirm_delete.html', {'evaluacion': evaluacion})
+
+
+
+@login_required(login_url='usuarios:login')
+@permission_required('proyectotf.view_proyectotf_te',
+raise_exception=True)
+def evaluacionptf_tribunal(request):
+    docente = get_object_or_404(Docente, cuil=request.user.username)
+    miembrote = get_object_or_404(Miembro_TE, docente=docente)
+    tribunal = get_object_or_404(TribunalEvaluador, miembros=miembrote)
+
+    proyectotf = Proyecto_TF.objects.filter(te_asignado=tribunal)
+
+    if request.method == 'POST':
+        form = Proyecto_TF_AlumnoForm(request.POST, request.FILES)
+        if form.is_valid():
+
+            proyecto = request.POST('proyecto_tf')
+            return redirect('evaluacion:evaluacion_ptf_list', pk=proyecto.pk)
+    else:
+        form = Proyecto_TF_AlumnoForm(instance=proyectotf)
+    return render(request, 'seleccionar_ptf.html', {'form': form})
+
+
+
+
+
+
+
 
 
 @login_required(login_url='usuarios:login')

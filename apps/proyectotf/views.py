@@ -152,16 +152,7 @@ def alumno_itf(request):
     return redirect('proyectotf:informetf_detail', pk=proyecto.pk)
 
 
-@login_required(login_url='usuarios:login')
-@permission_required('proyectotf.view_proyectotf_te',
-raise_exception=True)
-def evaluacionptf_tribunal(request):
-    docente = get_object_or_404(Docente, cuil=request.user.username)
-    miembrote = get_object_or_404(Miembro_TE, docente=docente)
-    tribunal = get_object_or_404(TribunalEvaluador, miembros=miembrote)
-    proyectotfs = Proyecto_TF_Alumno.objects.filter(proyecto_tf__te_asignado=tribunal)
 
-    return redirect('evaluacion:')
 
 #
 #
