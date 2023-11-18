@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
-from .models import Persona, Alumno, Docente, Asesor
+from .models import Alumno, Docente, Asesor
 from .forms import AlumnoForm, AsesorForm, DocenteForm
 
 
@@ -40,10 +40,9 @@ def alumno_create (request):
         form = AlumnoForm(request.POST)
         if form.is_valid():
             form.save()
-        return redirect('persona:alumno_list')
+            return redirect('persona:alumno_list')
     else:
         form = AlumnoForm()
-
     return render(request, 'alumno_create.html', {'form':form})
 
 
@@ -174,7 +173,7 @@ def docente_create (request):
             return redirect(reverse('persona:docente_list'))
     else:
         form = DocenteForm()
-        return render(request, 'docente_create.html', {'form':form})
+    return render(request, 'docente_create.html', {'form':form})
 
 
 @login_required(login_url='usuarios:login')

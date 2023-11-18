@@ -1,13 +1,16 @@
 {% extends "base/base_sb.html" %}
 {% block titulo %}Crear Membro TE{% endblock %}
-{% block tituloBarra %}Crear Membro TE{% endblock %}
+{% block titulo_barra %}Crear Membro TE{% endblock %}
 {% block contenido %}
 
 <br><br><br>
+<a class="btn btn-secondary" href="{% url 'comision:tribunal_detail' tribunal.id %}">VOLVER</a>
+<br><br>
+
 <form method="post" action="{% url 'comision:miembrote_create' tribunal.id %}">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Guardar</button>
+    <button class="btn btn-primary" type="submit">Guardar</button>
 </form>
-<a href="{% url 'comision:tribunal_detail' tribunal.id %}">VOLVER</a>
+
 {% endblock %}

@@ -222,8 +222,7 @@ def informetf_delete(request, pk):
         informetf.delete()
         messages.success(request, 'InformeTF eliminado correctamente.')
         return redirect('proyectotf:informetf_list')
-    return render(request, 'informetf_confirm_delete.html', {'informetf': informetf})
-
+    return redirect(reverse('proyectotf:informetf_list'))
 
 
 

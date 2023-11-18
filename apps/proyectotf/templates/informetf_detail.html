@@ -1,6 +1,6 @@
 {% extends "base/base.html" %}
 {% block titulo %}Detalle informetf{% endblock %}
-{% block tituloBarra %}Detalle informetf{% endblock %}
+{% block titulo_barra %}Detalle informetf{% endblock %}
 {% block contenido %}
 
     <br>
@@ -15,7 +15,7 @@
 		<p>Fecha Presentacion: {{ informetf.proyectotf.fecha_presentacion }}</p>
 
 
-    <form action="{% url 'proyectotf:informetf_delete' informetf.id %}" method="POST">
+    <form action="{% url 'proyectotf:informetf_delete' informetf.id %}" method="POST" style="justify-content: center;width: 65%; margin-left: auto; margin-right: auto;">
         {% csrf_token %}
         <input type="hidden" name="id_informetf" value="{{ informetf.id }}">
 

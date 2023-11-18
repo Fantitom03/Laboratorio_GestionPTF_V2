@@ -7,6 +7,7 @@
     <br><br><br>
     <a href="{% url 'persona:alumno_create' %}" class="btn btn-primary">Agregar Alumno</a>
     <br><br>
+
     <div id="resultados">
         <table class="table table-bordered table-sm" style="justify-content: center;width: 65%; margin-left: auto; margin-right: auto;">
             <thead>
@@ -15,7 +16,7 @@
                     <th scope="col">MU</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Apellido</th>
-										<th scope="col">Correo Electronico</th>
+                    <th scope="col">Correo Electronico</th>
                 </tr>
             </thead>
             <tbody>
@@ -35,6 +36,9 @@
             </tbody>
         </table>
     </div>
+
+
+{% endblock %}
 
 
 {% endblock %}
