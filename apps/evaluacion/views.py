@@ -82,6 +82,17 @@ def evaluacionptf_tribunal(request):
     proyectotfs = Proyecto_TF_Alumno.objects.filter(proyecto_tf__te_asignado=tribunal)
     return render(request, 'seleccionar_ptf.html', {'proyectotfs': proyectotfs})
 
+@login_required(login_url='usuarios:login')
+@permission_required('proyectotf.view_proyectotf_te',
+raise_exception=True)
+def evaluacionitf_tribunal(request):
+    docente = get_object_or_404(Docente, cuil=request.user.username)
+    miembrote = get_object_or_404(Miembro_TE, docente=docente)
+    tribunal = get_object_or_404(TribunalEvaluador, miembros=miembrote)
+    informetfs = Informe_TF.objects.filter(proyecto_tf__te_asignado=tribunal)
+
+    return render(request, 'seleccionar_itf.html', {'informetfs': informetfs})
+
 
 
 

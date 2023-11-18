@@ -17,6 +17,7 @@
                     <th scope="col">Proyecto TF</th>
                     <th scope="col">Estado</th>
                     <th scope="col">Observaciones</th>
+										<th scope="col">Evaluar ITF</th>
 
                 </tr>
             </thead>
@@ -24,11 +25,12 @@
             {% if informetfs %}
                 {% for informe in informetfs %}
                     <tr>
-                        <td scope="row"><a href="{% url 'proyectotf:informetf_detail' informe.id %}">{{ informe.id }}</a></td>
+                        <td scope="row">{{ informe.id }}</td>
                         <td>{{ informe.alumno }}</td>
                         <td>{{ informe.proyecto_tf.titulo_ptf }}</td>
                         <td>{{ informe.estado }}</td>
                         <td>{{ informe.observaciones }}</td>
+												<td><a class="btn btn-primary" href="{% url 'evaluacion:evaluacion_itf_list' informe.proyecto_tf.id %}">EVALUAR</a></td>
 
                     </tr>
                 {% endfor %}

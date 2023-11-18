@@ -55,7 +55,17 @@
                             </li>
 														{% endif %}
 
+														{% if perms.proyectotf.view_proyectotf_te %}
+														<li class="nav-item">
+                              <a class="nav-link active" aria-current="page" href="{% url 'evaluacion:seleccionar_ptf'  %}" style="color: whitesmoke;">EVALUAR PTF</a>
+                            </li>
+														{% endif %}
 
+														{% if perms.proyectotf.view_informetf_te %}
+														<li class="nav-item">
+                              <a class="nav-link active" aria-current="page" href="{% url 'evaluacion:seleccionar_itf'  %}" style="color: whitesmoke;">EVALUAR ITF</a>
+                            </li>
+														{% endif %}
 
                           </ul>
                         </div>

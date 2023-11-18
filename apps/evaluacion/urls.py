@@ -16,5 +16,6 @@ urlpatterns = [
     path('evaluacion_itf/editar/<int:pk>', views.evaluacion_itf_edit, name='evaluacion_itf_edit'),
     path('evaluacion_itf/delete/<int:pk>', views.evaluacion_itf_delete, name='evaluacion_itf_delete'),
 
-    path('seleccionar_ptf', views.evaluacionptf_tribunal, name='seleccionar_ptf')
+    path('seleccionar_ptf', views.evaluacionptf_tribunal, name='seleccionar_ptf'),
+    path('seleccionar_itf', views.evaluacionitf_tribunal, name='seleccionar_itf')
 ]
