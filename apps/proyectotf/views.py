@@ -96,8 +96,9 @@ def proyectotf_miembros_edit(request, pk):
 raise_exception=True)
 def proyectotf_edit(request, pk):
     proyectotf_relacion = get_object_or_404(Proyecto_TF_Alumno, pk=pk)
+    proyecto = proyectotf_relacion.proyecto_tf
     if request.method == 'POST':
-        form = Proyecto_TF_Form(request.POST, instance=proyectotf_relacion)
+        form = Proyecto_TF_Form(request.POST, request.FILES, instance=proyecto)
         if form.is_valid():
             proyectotf_editado = form.save(commit=True)
             proyectotf = proyectotf_editado
@@ -107,7 +108,7 @@ def proyectotf_edit(request, pk):
         else:
             messages.error(request, 'Por favor, corrija los errores en el formulario.')
     else:
-        form = Proyecto_TF_Form(instance=proyectotf_relacion)
+        form = Proyecto_TF_Form(instance=proyecto)
     return render(request, 'proyectotf_edit.html', {'form': form, 'proyectotf_relacion': proyectotf_relacion})
 
 
@@ -149,6 +150,18 @@ def alumno_itf(request):
     proyecto = get_object_or_404(Informe_TF, alumno=alumno)
     #informe = get_object_or_404(Informe_TF, proyecto_tf=proyecto)
     return redirect('proyectotf:informetf_detail', pk=proyecto.pk)
+
+
+@login_required(login_url='usuarios:login')
+@permission_required('proyectotf.view_proyectotf_te',
+raise_exception=True)
+def evaluacionptf_tribunal(request):
+    docente = get_object_or_404(Docente, cuil=request.user.username)
+    miembrote = get_object_or_404(Miembro_TE, docente=docente)
+    tribunal = get_object_or_404(TribunalEvaluador, miembros=miembrote)
+    proyectotfs = Proyecto_TF_Alumno.objects.filter(proyecto_tf__te_asignado=tribunal)
+
+    return redirect('evaluacion:')
 
 #
 #

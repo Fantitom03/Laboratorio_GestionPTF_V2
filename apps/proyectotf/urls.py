@@ -20,5 +20,6 @@ urlpatterns = [
 
     path('alumno_ptf', views.alumno_ptf, name='alumno_ptf'),
     path('alumno_itf', views.alumno_itf, name='alumno_itf'),
-    path('tribunal', views.proyectotf_list_miembrote, name='tribunal')
+    path('tribunal', views.proyectotf_list_miembrote, name='tribunal'),
+    path('evaluaciontribunal', views.evaluacionptf_tribunal, name='evaluaciontribunal')
 ]
