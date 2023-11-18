@@ -14,7 +14,7 @@
 		<p>Fecha Presentacion: {{ proyectotf.proyecto_tf.fecha_presentacion }}</p>
 
 
-    <form action="{% url 'proyectotf:proyectotf_delete' proyectotf.id %}" method="POST">
+    <form action="{% url 'proyectotf:proyectotf_delete' proyectotf.id %}" method="POST" style="justify-content: center;width: 65%; margin-left: auto; margin-right: auto;">
         {% csrf_token %}
         <input type="hidden" name="id_proyectotf" value="{{ proyectotf.id }}">
 

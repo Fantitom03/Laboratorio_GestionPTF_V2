@@ -6,7 +6,7 @@
     <br>
     <br>
     <br>
-    <form method="post" action="{% url 'proyectotf:informetf_edit' informetf.id %}">
+    <form method="post" action="{% url 'proyectotf:informetf_edit' informetf.id %}" style="justify-content: center;width: 65%; margin-left: auto; margin-right: auto;">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Guardar</button>
