@@ -70,11 +70,11 @@ class EvaluacionITF_Form(forms.ModelForm):
             'observaciones': 'Observaciones',
         }
         widgets = {
-            'fecha_evaluacion': forms.DateInput(attrs={'type': 'date'}),
+            'fecha_evaluacion': forms.DateInput(attrs={'type': 'date', 'id': 'id_fecha_evaluacion'}),
+            'estado': forms.Select(attrs={'class': 'form-select', 'id': 'id_estado'}),
+            'observaciones': forms.Textarea(attrs={'class': 'form-control', 'id': 'id_observaciones'}),
         }
-        widgets = {
-            'fecha_evaluacion': forms.DateInput(attrs={'type': 'date'}),
-        }
+
 
     def clean_fecha_evaluacion(self):
         fecha_evaluacion = self.cleaned_data['fecha_evaluacion']
@@ -101,7 +101,8 @@ class Defensa_Form(forms.ModelForm):
             'estado': 'Estado',
         }
         widgets = {
-            'fecha_evaluacion': forms.DateInput(attrs={'type': 'date'}),
+            'fecha_evaluacion': forms.DateInput(attrs={'type': 'date', 'id': 'id_fecha_evaluacion'}),
+            'estado': forms.Select(attrs={'class': 'form-select', 'id': 'id_estado'}),
         }
 
     def clean_fecha_evaluacion(self):

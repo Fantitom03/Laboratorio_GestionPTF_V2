@@ -18,8 +18,8 @@ class Proyecto_TF_Form(forms.ModelForm):
     def clean_fecha_presentacion(self):
         fecha_presentacion = self.cleaned_data.get('fecha_presentacion')
 
-        if fecha_presentacion and fecha_presentacion < datetime.now().date():
-            raise ValidationError(_('La fecha de presentación no puede ser en el pasado.'))
+        if fecha_presentacion and fecha_presentacion > datetime.now().date():
+            raise ValidationError(_('La fecha de presentación no puede ser en el futuro.'))
 
         return fecha_presentacion
 
