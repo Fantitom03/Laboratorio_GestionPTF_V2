@@ -79,18 +79,8 @@ def evaluacionptf_tribunal(request):
     docente = get_object_or_404(Docente, cuil=request.user.username)
     miembrote = get_object_or_404(Miembro_TE, docente=docente)
     tribunal = get_object_or_404(TribunalEvaluador, miembros=miembrote)
-
-    proyectotf = Proyecto_TF.objects.filter(te_asignado=tribunal)
-
-    if request.method == 'POST':
-        form = Proyecto_TF_AlumnoForm(request.POST, request.FILES)
-        if form.is_valid():
-
-            proyecto = request.POST('proyecto_tf')
-            return redirect('evaluacion:evaluacion_ptf_list', pk=proyecto.pk)
-    else:
-        form = Proyecto_TF_AlumnoForm(instance=proyectotf)
-    return render(request, 'seleccionar_ptf.html', {'form': form})
+    proyectotfs = Proyecto_TF_Alumno.objects.filter(proyecto_tf__te_asignado=tribunal)
+    return render(request, 'seleccionar_ptf.html', {'proyectotfs': proyectotfs})
 
 
 
