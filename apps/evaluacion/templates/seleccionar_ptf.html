@@ -1,15 +1,47 @@
 {% extends "base/base.html" %}
-{% block titulo %}Agregar Miembros{% endblock %}
+{% block titulo %}Listado proyectotf{% endblock %}
+{% block titulo_barra %}Listado proyectotf{% endblock %}
 {% block contenido %}
-{% block tituloBarra %}Agrergar Miembros{% endblock %}
-  <br>
-  <br>
-  <br>
-  <form enctype="multipart/form-data" method="post" action="{% url 'evaluacion:seleccionar_ptf' %}">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">BUSCAR</button>
-  </form>
+
+    <br>
+    <br>
+    <br>
+
+
+
+    <div id="resultados">
+        <table class="table table-bordered table-sm" style="justify-content: center;width: 65%; margin-left: auto; margin-right: auto;">
+            <thead>
+                <tr>
+                    <th scope="col">Titulo PTF</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Alumno</th>
+										<th scope="col">Director</th>
+										<th scope="col">Fecha Presentacion</th>
+										<th scope="col">Evaluacion</th>
+
+                </tr>
+            </thead>
+            <tbody>
+            {% if proyectotfs %}
+                {% for proyecto in proyectotfs %}
+                    <tr>
+                        <td scope="row">{{ proyecto.proyecto_tf.titulo_ptf }}</td>
+                        <td>{{ proyecto.proyecto_tf.descripcion }}</td>
+                        <td>{{ proyecto.proyecto_tf.estado }}</td>
+                        <td>{{ proyecto.alumno }}</td>
+                        <td>{{ proyecto.proyecto_tf.director }}</td>
+                        <td>{{ proyecto.proyecto_tf.fecha_presentacion }}</td>
+												<td><a class="btn btn-primary" href="{% url 'evaluacion:evaluacion_ptf_list' proyecto.proyecto_tf.id %}">EVALUAR</a></td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <h1>No hay proyectos cargados</h1>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
 
 
 {% endblock %}
