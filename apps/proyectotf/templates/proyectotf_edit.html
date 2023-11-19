@@ -1,17 +1,19 @@
 {% extends "base/base_sb.html" %}
 {% block titulo %}Editar proyectotf{% endblock %}
-{% block contenido %}
 {% block titulo_barra %}Editar proyectotf{% endblock %}
-    <br>
-    <br>
-    <br>
+
+{% block contenido %}
+
+    <br><br><br>
+    <a class="btn btn-secondary" href="{% url 'proyectotf:proyectotf_list' %}">VOLVER</a>
+    <br><br>
+
     <form enctype="multipart/form-data" method="post" action="{% url 'proyectotf:proyectotf_edit' proyectotf_relacion.id %}" style="justify-content: center;width: 65%; margin-left: auto; margin-right: auto;">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Guardar</button>
+        <button class="btn btn-primary" type="submit">Guardar</button>
     </form>
 
-    <a href="{% url 'proyectotf:proyectotf_list' %}">VOLVER</a>
 
 
 {% endblock %}

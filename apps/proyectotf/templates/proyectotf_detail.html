@@ -1,10 +1,13 @@
 {% extends "base/base.html" %}
 {% block titulo %}Detalle proyectotf{% endblock %}
-{% block contenido %}
 {% block titulo_barra %}Detalle proyectotf{% endblock %}
-    <br>
-    <br>
+
+{% block contenido %}
+
+    <br><br><br>
     <h1>Proyecto_TF: {{ proyectotf.proyecto_tf.titulo_ptf }} </h1>
+    <br><br>
+
     <p><strong> Datos del Proyecto TF: </strong></p>
     <p>Titulo PTF: {{ proyectotf.proyecto_tf.titulo_ptf }}</p>
     <p>Descripcion: {{ proyectotf.proyecto_tf.descripcion }}</p>
@@ -18,20 +21,19 @@
         {% csrf_token %}
         <input type="hidden" name="id_proyectotf" value="{{ proyectotf.id }}">
 
-			{% if perms.proyectotf.delete_proyecto_tf and  perms.proyectotf.edit_proyecto_tf and perms.proyectotf.edit_proyecto_tf_alumno  %}
-
-        <input type="submit", value="Eliminar">
-        <a href="{% url 'proyectotf:proyectotf_edit' proyectotf.id %}" class="btn btn-primary">Editar</a>
-				<a href="{% url 'proyectotf:proyectotf_miembros_edit' proyectotf.id %}" class="btn btn-primary">Editar Alumnos</a>
-			{% endif %}
+        {% if perms.proyectotf.delete_proyecto_tf and  perms.proyectotf.edit_proyecto_tf and perms.proyectotf.edit_proyecto_tf_alumno  %}
+        <input type="submit" value="Eliminar" class="btn btn-danger" >
+        <a href="{% url 'proyectotf:proyectotf_edit' proyectotf.id %}" class="btn btn-primary">Editar Proyecto</a>
+        <a href="{% url 'proyectotf:proyectotf_miembros_edit' proyectotf.id %}" class="btn btn-primary">Editar Alumnos</a>
+        {% endif %}
     </form>
-    <br>
-    <br>
 
-		{% if perms.proyectotf.delete_proyecto_tf and  perms.proyectotf.edit_proyecto_tf and perms.proyectotf.edit_proyecto_tf_alumno  %}
-    <a href="{% url 'proyectotf:proyectotf_list' %}">VOLVER</a>
-		{% else %}
-		<a href="{% url 'usuarios:usuario' %}">VOLVER</a>
-		{% endif %}
+    <br><br>
+
+    {% if perms.proyectotf.delete_proyecto_tf and  perms.proyectotf.edit_proyecto_tf and perms.proyectotf.edit_proyecto_tf_alumno  %}
+    <a class="btn btn-secondary" href="{% url 'proyectotf:proyectotf_list' %}">VOLVER</a>
+    {% else %}
+    <a class="btn btn-secondary"  href="{% url 'usuarios:usuario' %}">VOLVER</a>
+    {% endif %}
 
 {% endblock %}

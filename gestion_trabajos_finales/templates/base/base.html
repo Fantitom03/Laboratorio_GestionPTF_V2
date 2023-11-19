@@ -23,7 +23,7 @@
                         <div class="offcanvas-body">
                           <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                             <li class="nav-item">
-                              <a class="nav-link active" aria-current="page" href="#" style="color: whitesmoke;">Inicio</a>
+                              <a class="nav-link active" aria-current="page" href="{% url 'usuarios:usuario' %}" style="color: whitesmoke;">Inicio</a>
                             </li>
                               {% if perms.comision.view_tribunalevaluador %}
                               <li class="nav-item">
@@ -55,17 +55,17 @@
                               </li>
                               {% endif %}
 
-														{% if perms.proyectotf.view_proyectotf_te %}
-														<li class="nav-item">
-                              <a class="nav-link active" aria-current="page" href="{% url 'evaluacion:seleccionar_ptf'  %}" style="color: whitesmoke;">EVALUAR PTF</a>
-                            </li>
-														{% endif %}
+                              {% if perms.proyectotf.view_proyectotf_te %}
+                              <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{% url 'evaluacion:seleccionar_ptf'  %}" style="color: whitesmoke;">EVALUAR PTF</a>
+                              </li>
+                              {% endif %}
 
-														{% if perms.proyectotf.view_informetf_te %}
-														<li class="nav-item">
-                              <a class="nav-link active" aria-current="page" href="{% url 'evaluacion:seleccionar_itf'  %}" style="color: whitesmoke;">EVALUAR ITF</a>
-                            </li>
-														{% endif %}
+                              {% if perms.proyectotf.view_informetf_te %}
+                              <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{% url 'evaluacion:seleccionar_itf'  %}" style="color: whitesmoke;">EVALUAR ITF</a>
+                              </li>
+                              {% endif %}
 
                           </ul>
                         </div>
