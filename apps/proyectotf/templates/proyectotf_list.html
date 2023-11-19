@@ -1,12 +1,12 @@
 {% extends "base/base.html" %}
-{% block titulo %}Listado PTF{% endblock %}
-{% block titulo_barra %}Listado PTF{% endblock %}
-
+{% block titulo %}Listado proyectotf{% endblock %}
 {% block contenido %}
+{% block tituloBarra %}Listado proyectotf{% endblock %}
+    <br>
+    <br>
+    <br>
 
-    <br><br><br>
     <a href="{% url 'proyectotf:proyectotf_create' %}" class="btn btn-primary">Agregar Proyecto TF</a>
-    <br><br>
 
     <div id="resultados">
         <table class="table table-bordered table-sm" style="justify-content: center;width: 65%; margin-left: auto; margin-right: auto;">
