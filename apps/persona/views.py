@@ -88,7 +88,7 @@ def asesor_list(request):
 
 
 @login_required(login_url='usuarios:login')
-@permission_required('persona.view_alumno',
+@permission_required('persona.view_asesor',
 raise_exception=True)
 def asesor_detail(request, pk):
     asesor = get_object_or_404(Asesor, pk=pk)

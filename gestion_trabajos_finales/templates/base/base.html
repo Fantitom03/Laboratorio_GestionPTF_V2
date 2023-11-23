@@ -25,6 +25,21 @@
                             <li class="nav-item">
                               <a class="nav-link active" aria-current="page" href="{% url 'usuarios:usuario' %}" style="color: whitesmoke;">Inicio</a>
                             </li>
+                              <li class="nav-item">
+                                  {% if perms.comision.view_alumno %}
+                                    <a class="nav-link active" aria-current="page" href="{% url 'persona:alumno_list' %}" style="color: whitesmoke;">Alumnos</a>
+                                  {% endif %}
+                              </li>
+                              <li class="nav-item">
+                                  {% if perms.comision.view_docente %}
+                                    <a class="nav-link active" aria-current="page" href="{% url 'persona:docente_list' %}" style="color: whitesmoke;">Docentes</a>
+                                  {% endif %}
+                              </li>
+                              <li class="nav-item">
+                                  {% if perms.comision.view_asesor %}
+                                    <a class="nav-link active" aria-current="page" href="{% url 'persona:asesor_list' %}" style="color: whitesmoke;">Asesores</a>
+                                  {% endif %}
+                              </li>
                               {% if perms.comision.view_tribunalevaluador %}
                               <li class="nav-item">
                               <a class="nav-link active" aria-current="page" href="{% url 'comision:tribunal_list' %}" style="color: whitesmoke;">Tribunales</a>
