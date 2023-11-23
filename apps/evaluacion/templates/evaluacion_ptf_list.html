@@ -4,11 +4,9 @@
 
 {% block contenido %}
 <br><br><br>
-<br><br>
 
     <h1>Evaluaciones del proyecto {{proyecto.titulo_ptf}}</h1>
     <br><br>
-    <a href="#"> </a>
     <a href="{% url 'evaluacion:evaluacion_ptf_create' proyecto.id %}" class="btn btn-primary">Evaluar PTF</a>
     <br><br>
     <div id="resultados">

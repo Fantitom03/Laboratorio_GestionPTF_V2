@@ -71,6 +71,8 @@ class EvaluacionITF_Form(forms.ModelForm):
         }
         widgets = {
             'fecha_evaluacion': forms.DateInput(attrs={'type': 'date'}),
+            'estado': forms.Select(attrs={'class': 'form-select', 'id': 'id_estado'}),
+            'observaciones': forms.Textarea(attrs={'class': 'form-control', 'id': 'id_observaciones'}),
         }
 
     def clean_fecha_evaluacion(self):

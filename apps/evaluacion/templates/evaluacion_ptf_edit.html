@@ -5,6 +5,7 @@
 {% block contenido %}
 
 <br><br><br>
+<a class="btn btn-secondary" href="{% url 'evaluacion:evaluacion_ptf_list' evaluacion.proyecto_TF.id %}">VOLVER</a>
 <br><br>
 
 <form enctype="multipart/form-data" method="post" action="{% url 'evaluacion:evaluacion_ptf_edit' evaluacion.id %}" style="justify-content: center;width: 65%; margin-left: auto; margin-right: auto;">
@@ -12,7 +13,7 @@
     {{ form.as_p }}
     <button type="submit">Guardar</button>
 </form>
-<a href="{% url 'evaluacion:evaluacion_ptf_list' evaluacion.proyecto_TF.id %}">VOLVER</a>
+
 {% endblock %}
 
 {% block js %}
